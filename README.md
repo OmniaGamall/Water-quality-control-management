@@ -12,9 +12,9 @@ Features:
 Usage:
 
 1. Chemist Interface:
-  1. Log in with your credentials.
-  2. Input experiment results electronically.
-  3. Access historical data and generate reports.
+   1. Log in with your credentials.
+   2. Input experiment results electronically.
+   3. Access historical data and generate reports.
 2. Water Treatment Engineer Interface:
    1. Log in with your credentials.
    2. Access real-time water quality data.
