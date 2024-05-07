@@ -1,6 +1,6 @@
 Overview:
 
-Welcome to the Automated Water Analysis System repository! This project aims to revolutionize the water analysis process at drinking water treatment companies by digitizing and automating manual tasks. This README file provides an overview of the system, installation instructions, and usage guidelines to help you get started.
+Welcome to the Automated Water Analysis System repository! This project aims to revolutionize the water analysis process at drinking water treatment companies by digitizing and automating manual tasks. This README file provides an overview of the system.
 
 Features:
 
