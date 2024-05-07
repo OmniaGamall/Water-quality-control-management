@@ -12,13 +12,13 @@ Features:
 Usage:
 
 1. Chemist Interface:
- . Log in with your credentials.
- . Input experiment results electronically.
- . Access historical data and generate reports.
+  1. Log in with your credentials.
+  2. Input experiment results electronically.
+  3. Access historical data and generate reports.
 2. Water Treatment Engineer Interface:
- . Log in with your credentials.
- . Access real-time water quality data.
- . Receive automated reports for quality control.
- . Send notes 
+   1. Log in with your credentials.
+   2. Access real-time water quality data.
+   3. Receive automated reports for quality control.
+   4. Send notes 
 3. Administrative Tasks:
- . Admins can manage user accounts and system settings.
+   1. Admins can manage user accounts and system settings.
