@@ -1,0 +1,1 @@
+Digital system to automate the water analysis process at the drinking water treatment company. The digital system will allow chemists to input experiment results electronically, eliminating the need for manual recording. Furthermore, the system will generate daily reports automatically, providing timely access to critical data for water quality control.
