@@ -1,6 +1,14 @@
 {
     "cSpell.words": [
         "Fname",
-        "Lname"
-    ]
+        "ITID",
+        "Lname",
+        "technican"
+    ],
+    "cSpell.ignoreWords": [
+        "Dateـ",
+        "Notifi",
+        "savesas"
+    ],
+    "sqltools.connections": []
 }
