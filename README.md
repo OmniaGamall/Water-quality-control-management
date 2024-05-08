@@ -18,4 +18,4 @@ Welcome to the Automated Water Analysis System repository! This project aims to 
    3. Receive automated reports for quality control.
    4. Send notes 
 3. Administrative Tasks:
-   1. Admins can manage user accounts and system settings.
+   i. Admins can manage user accounts and system settings.
