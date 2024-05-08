@@ -9,8 +9,8 @@ Welcome to the Automated Water Analysis System repository! This project aims to 
 
 ## Usage:
 1. Chemist Interface:
-   1. Log in with your credentials.
-   2. Input experiment results electronically.
+   1. Log in with your credentials
+   2. Input experiment results electronically
    3. Access historical data and generate reports.
 2. Water Treatment Engineer Interface:
    1. Log in with your credentials.
