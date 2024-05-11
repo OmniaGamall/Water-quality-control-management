@@ -1,5 +1,5 @@
-CREATE DATABASE water_analysis_system;
-use water_analysis_system;
+CREATE DATABASE water;
+use water;
 
 ``` User Authentication ```
 
@@ -45,35 +45,35 @@ CREATE TABLE login_form (
 );
 
 CREATE TABLE chemist (
-  ChID int(11) AUTO_INCREMENT,
+  ChID int(11),
   Qualification varchar(50),
   PRIMARY KEY (ChID),
   FOREIGN KEY (ChID) REFERENCES employee (EmpID)
 );
 
 CREATE TABLE engineer (
-  EngID int(11) AUTO_INCREMENT,
+  EngID int(11),
   specialization varchar(50),
   PRIMARY KEY (EngID),
   FOREIGN KEY (EngID) REFERENCES employee (EmpID)
 );
 
 CREATE TABLE it (
-  ITID int(11) AUTO_INCREMENT,
+  ITID int(11),
   skills varchar(50),
   PRIMARY KEY (ITID),
   FOREIGN KEY (ITID) REFERENCES employee (EmpID)
 );
 
 CREATE TABLE lab_technican (
-  LTechID int(11) AUTO_INCREMENT,
+  LTechID int(11),
   Equipment_Knowledge varchar(50) DEFAULT NULL,
   PRIMARY KEY (LTechID),
   FOREIGN KEY (LTechID) REFERENCES employee (EmpID)
 );
 
 CREATE TABLE operating_technican (
-  OTechID int(11) AUTO_INCREMENT,
+  OTechID int(11),
   Certification varchar(50),
   PRIMARY KEY (OTechID),
   FOREIGN KEY (OTechID) REFERENCES employee (EmpID)

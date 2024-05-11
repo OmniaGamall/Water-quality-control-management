@@ -35,7 +35,13 @@ INSERT INTO employee (Fname, Lname, phoneNum, email, HireDate, RoleID) VALUES
 ('Tasbeeh', 'Ismail', '9876543210', 'tasbeeh.ismail@gmail.com', '2023-02-20', 1),
 ('Omnia', 'Gamal', '5559876543', 'omnia.gamal@gmail.com', '2023-04-05', 1),
 ('Reem', 'Ghareeb', '5551234567', 'reem.ghreeb@gmail.com', '2023-03-10', 1),
-('Ahmed', 'Khaled', '5552223333', 'ahmed.khaled@gmail.com', '2023-05-15', 5);
+('Ahmed', 'Khaled', '5552223333', 'ahmed.khaled@gmail.com', '2023-05-15', 5),
+('Anas', 'Ragab', '1065098432', 'anas.ragab@gmail.com', '2023-05-15', 6),
+('Sara', 'Ahmed', '7338373002', 'sara.ahmed@gmail.com', '2024-05-15', 3),
+('Wafaa', 'Ahmed', '9883957400', 'wafaa.ahmed@gmail.com', '2021-03-15', 2),
+('Habiba', 'Youssef', '7988800271', 'habiba.youssef@gmail.com', '2023-05-17', 4),
+('Ismail', 'Hamza', '7298374474', 'ismail.hamza@gmail.com', '2023-05-16', 5),
+('Sondos', 'Atef', '8293373372', 'sondos.atef@gmail.com', '2024-08-22', 3);
 
 -- login_form
 INSERT INTO login_form (username, emp_password, EmpID) VALUES
@@ -43,45 +49,33 @@ INSERT INTO login_form (username, emp_password, EmpID) VALUES
 ('tasbeeh_ismail', 'securepwd', 2),
 ('omnia_gamal', 'mikepass', 3),
 ('reem_ghreeb', 'emilypass', 4),
-('ahmed_khaled', 'davidpass', 5);
+('ahmed_khaled', 'davidpass', 5),
+('anas_ragab', 'password123', 6),
+('sara_ahmed', 'securepwd', 7),
+('wafaa_ahmed', 'mikepass', 8),
+('habiba_youssef', 'emilypass', 9),
+('ismail_hamza', 'davidpass', 10);
 
 -- chemist
-INSERT INTO chemist (Qualification) VALUES
-('PhD in Chemistry'),
-('Master of Science in Analytical Chemistry'),
-('Bachelor of Science in Organic Chemistry'),
-('Chemical Engineering Diploma'),
-('Bachelor of Science in Biochemistry');
+INSERT INTO chemist (ChID, Qualification) VALUES
+(1, 'Bachelor of Science in Organic Chemistry'),
+(9, 'Bachelor of Science in Biochemistry');
 
 
 -- engineer
-INSERT INTO engineer (specialization) VALUES
-('Electrical Engineering'),
-('Mechanical Engineering'),
-('Civil Engineering'),
-('Software Engineering'),
-('Aerospace Engineering');
+INSERT INTO engineer (EngID, specialization) VALUES
+(5, 'Electrical Engineering'),
+(10, 'Mechanical Engineering');
 
 -- it
-INSERT INTO it (skills) VALUES
-('Network Administration'),
-('Database Management'),
-('Web Development'),
-('Cybersecurity'),
-('System Administration');
+INSERT INTO it (ITID, skills) VALUES
+(6, 'Network Administration');
 
 -- lab_technican
-INSERT INTO lab_technican (Equipment_Knowledge) VALUES
-('Mass Spectrometry'),
-('Gas Chromatography'),
-('Nuclear Magnetic Resonance'),
-('Spectrophotometry'),
-('Electron Microscopy');
+INSERT INTO lab_technican (LTechID, Equipment_Knowledge) VALUES
+(7, 'Electron Microscopy'),
+(11, 'Gas Chromatography');
 
 -- operating_technican
-INSERT INTO operating_technican (Certification) VALUES
-('OSHA Certified'),
-('Forklift Operator Certification'),
-('Hazardous Materials Handling Certification'),
-('First Aid and CPR Certified'),
-('EPA Certification');
+INSERT INTO operating_technican (OTechID, Certification) VALUES
+(8, 'OSHA Certified');
