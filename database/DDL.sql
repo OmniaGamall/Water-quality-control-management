@@ -45,35 +45,35 @@ CREATE TABLE login_form (
 );
 
 CREATE TABLE chemist (
-  ChID int(11),
+  ChID int(11) AUTO_INCREMENT,
   Qualification varchar(50),
   PRIMARY KEY (ChID),
   FOREIGN KEY (ChID) REFERENCES employee (EmpID)
 );
 
 CREATE TABLE engineer (
-  EngID int(11),
+  EngID int(11) AUTO_INCREMENT,
   specialization varchar(50),
   PRIMARY KEY (EngID),
   FOREIGN KEY (EngID) REFERENCES employee (EmpID)
 );
 
 CREATE TABLE it (
-  ITID int(11),
+  ITID int(11) AUTO_INCREMENT,
   skills varchar(50),
   PRIMARY KEY (ITID),
   FOREIGN KEY (ITID) REFERENCES employee (EmpID)
 );
 
 CREATE TABLE lab_technican (
-  LTechID int(11),
+  LTechID int(11) AUTO_INCREMENT,
   Equipment_Knowledge varchar(50) DEFAULT NULL,
   PRIMARY KEY (LTechID),
   FOREIGN KEY (LTechID) REFERENCES employee (EmpID)
 );
 
 CREATE TABLE operating_technican (
-  OTechID int(11),
+  OTechID int(11) AUTO_INCREMENT,
   Certification varchar(50),
   PRIMARY KEY (OTechID),
   FOREIGN KEY (OTechID) REFERENCES employee (EmpID)
@@ -117,7 +117,7 @@ CREATE TABLE test (
 );
 
 CREATE TABLE task (
-  TaskID INT PRIMARY KEY,
+  TaskID INT PRIMARY KEY AUTO_INCREMENT,
   Description_ TEXT NOT NULL,
   Status_ VARCHAR(50) NOT NULL,
   AssignedTo INT NOT NULL,
