@@ -111,7 +111,7 @@ CREATE TABLE equipment (
 CREATE TABLE test (
   TestID int(11) AUTO_INCREMENT,
   TestName varchar(250) NOT NULL,
-  Time_ varchar(50) NOT NULL,
+  Cost INT NOT NULL,
   Description_ text NOT NULL,
   ApplicableParameters text NOT NULL,
   PRIMARY KEY (TestID)

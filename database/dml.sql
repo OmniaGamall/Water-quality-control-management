@@ -80,10 +80,7 @@ INSERT INTO lab_technican (LTechID, Equipment_Knowledge) VALUES
 INSERT INTO operating_technican (OTechID, Certification) VALUES
 (8, 'OSHA Certified');
 
-/* -------------------- Reem Queries --------------------*/
-
--- experiment -> done !!!!! explain previous please 
--- I change the value to be ExpName not ExpID, and add this key in table bcz i don't found it
+-- experiment
 INSERT INTO experiment (ExpName) 
 VALUES 
 ("New experiment"),
@@ -93,7 +90,7 @@ VALUES
 ("New experiment");
 
 
--- report -> done
+-- report 
 INSERT INTO report (Title, Author, Flow, Temp, TotalDuration,Date_, Day_) 
 VALUES
 ("Water Quality Analysis Report", "Reem Ghareeb", "12.5", "18", "48", "2024-05-10", "Monday"),
@@ -102,7 +99,7 @@ VALUES
 ("Lake Water Analysis 2", "Tasbeeh", "15.3", "14.5", "40", "2024-03-16", "Thursday"),
 ("Water Oxygen", "Alaa Zaitoon", "17.5", "18", "14", "2024-07-22", "Monday");
 
---equipment -> done
+--equipment
 INSERT INTO equipment (Name_,Manufacture,Type_) 
 VALUES 
 ("Spectrophotometer", "XYZ Corporation", "Laboratory"),
@@ -110,23 +107,22 @@ VALUES
 ("Turbidity Meter", "DEF Technologies", "Field"),
 ("Pipette", "GHI Supplies", "Laboratory");
 
--- test -> done with editing (ALTER TABLE time -> cost)
-
+-- test 
 INSERT INTO test(Cost, TestName, Description_, ApplicableParameters) 
 VALUES 
-(1500, "COD", "Chemical oxygen demand (COD) is the amount of dissolved oxygen that must be present in water to oxidise chemical organic materials, like petroleum. COD is used to gauge the short-term impact wastewater effluents will have on the oxygen levels of receiving waters."," Dichromate / sulphoric Acid and silver"),
-(1600, "TSS", "Total Suspended Solids (TSS) is one of the method defined analytes. There is no specific chemical formula for a total suspended solid. Quite simply put, TSS is anything that is captured by filtering the sample aliquot through a specific pore size filter. Suspended solids can range from particles of silt or sediment to pieces of plant material such as leaves or stems. Even insect larvae and eggs can fall in the general category of TSS. High amounts of TSS can lead to an esthetically displeasing appearance of a body of water. Either the color or overall turbidity of the water will be negatively impacted."," Dichromate / sulphoric Acid and silver"),
-(2200, "PH", "pH water analysis is crucial for assessing acidity or alkalinity in water, influencing environmental health, water treatment efficacy, agricultural productivity, and industrial processes."," Dichromate / sulphoric Acid and silver");
+(1200, "COD", "Chemical oxygen demand (COD) is the amount of dissolved oxygen that must be present in water to oxidise chemical organic materials, like petroleum. COD is used to gauge the short-term impact wastewater effluents will have on the oxygen levels of receiving waters."," Dichromate / sulphoric Acid and silver"),
+(1500, "TSS", "Total Suspended Solids (TSS) is one of the method defined analytes. There is no specific chemical formula for a total suspended solid. Quite simply put, TSS is anything that is captured by filtering the sample aliquot through a specific pore size filter. Suspended solids can range from particles of silt or sediment to pieces of plant material such as leaves or stems. Even insect larvae and eggs can fall in the general category of TSS. High amounts of TSS can lead to an esthetically displeasing appearance of a body of water. Either the color or overall turbidity of the water will be negatively impacted."," Dichromate / sulphoric Acid and silver"),
+(2100, "PH", "pH water analysis is crucial for assessing acidity or alkalinity in water, influencing environmental health, water treatment efficacy, agricultural productivity, and industrial processes."," Dichromate / sulphoric Acid and silver");
 
--- task -> done with editing (make 1, 2 -> 5, 10)
+-- task
 INSERT INTO task (Description_, Status_, AssignedTo)
 VALUES
-('Perform pH analysis of water samples', 'Completed', 1),
-('Calibrate water quality monitoring equipment', 'Pending',  2),
-('Conduct microbial testing on drinking water', 'In Progress', 1),
-('Design a new filtration system', 'Cancelled', 2);
+('Perform pH analysis of water samples', 'Completed', 5),
+('Calibrate water quality monitoring equipment', 'Pending',  10),
+('Conduct microbial testing on drinking water', 'In Progress', 5),
+('Design a new filtration system', 'Cancelled', 10);
 
--- notification -> done
+-- notification
 INSERT INTO notification (Sender, Receiver, MessageContent) 
 VALUES 
 (1, 4, 'Meeting reminder: Water quality analysis discussion tomorrow at 10 AM.'),
@@ -134,7 +130,7 @@ VALUES
 (10, 6, 'Report submission deadline extended to Friday. Kindly ensure completion.'),
 (11, 9, 'New task assigned: Conduct field testing for water samples in Sector 5.');
 
--- chemist_make_exp -> done
+-- chemist_make_exp
 INSERT INTO chemist_make_exp  (ChID, ExpID)
 VALUES
 (1, 1),
@@ -143,7 +139,7 @@ VALUES
 (9, 4),
 (1, 5);
 
--- it_control_exp -> done
+-- it_control_exp
 INSERT INTO it_control_exp 
 VALUES
 (6, 1),
@@ -152,7 +148,7 @@ VALUES
 (6, 4),
 (6, 5);
 
--- experiment_savesas_report -> done
+-- experiment_savesas_report 
 INSERT INTO experiment_savesas_report
 VALUES
 (1, 1),
@@ -161,7 +157,7 @@ VALUES
 (4, 4),
 (5, 5);
 
--- experiment_have_equipment -> done
+-- experiment_have_equipment
 INSERT INTO experiment_have_equipment
 VALUES
 (1, 1),
@@ -175,7 +171,7 @@ VALUES
 (5, 1),
 (5, 4);
 
--- experiment_from_test -> done with editing
+-- experiment_from_test
 INSERT INTO experiment_from_test (ExpID, TestID, Result, Dateـ) 
 VALUES
 (1, 1, 'Positive', '2024-05-10'),
@@ -194,14 +190,14 @@ VALUES
 (5, 2, 'Negative', '2024-05-23'),
 (5, 3, 'Positive', '2024-05-24');
 
--- create_task -> done
+-- create_task
 INSERT INTO create_task (ChID, TaskID) VALUES
 (1, 1),
 (1, 2),
 (9, 3),
 (9, 4);
 
--- modify_task -> done
+-- modify_task
 INSERT INTO modify_task 
 VALUES
 (5, 1, '2024-05-10'),
@@ -209,7 +205,7 @@ VALUES
 (10, 3, '2024-04-15'),
 (10, 4, '2024-03-20');
 
--- send_notification -> done
+-- send_notification
 INSERT INTO send_notification
 VALUES
 (5, 1),
@@ -217,7 +213,7 @@ VALUES
 (10, 3),
 (10, 4);
 
--- view_report -> done
+-- view_report
 INSERT INTO view_report
 VALUES
 (1, 1),
@@ -227,7 +223,7 @@ VALUES
 (3, 3),
 (7, 1);
 
--- show_notification -> done!!
+-- show_notification
 INSERT INTO show_notification
 VALUES
 (1, 1),
