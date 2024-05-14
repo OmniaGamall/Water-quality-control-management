@@ -84,6 +84,7 @@ CREATE TABLE operating_technican (
 
 CREATE TABLE experiment (
   ExpID int(11) AUTO_INCREMENT,
+  ExpName varchar(255) NOT NULL,
   PRIMARY KEY (ExpID)
 );
 
@@ -201,4 +202,21 @@ CREATE TABLE send_notification (
   PRIMARY KEY (EngID, NotifiID),
   FOREIGN KEY (EngID) REFERENCES Engineer(EngID),
   FOREIGN KEY (NotifiID) REFERENCES Notification(NotifiID)
+);
+
+-- show_notification -> done
+CREATE TABLE show_notification (
+  EmpID INT NOT NULL,
+  NotifiID INT NOT NULL,
+  PRIMARY KEY (EmpID, NotifiID),
+  FOREIGN KEY (EmpID) REFERENCES employee(EmpID),
+  FOREIGN KEY (NotifiID) REFERENCES Notification(NotifiID)
+);
+-- view_report -> done
+CREATE TABLE view_report (
+  EmpID INT NOT NULL,
+  RepID INT NOT NULL,
+  PRIMARY KEY (EmpID, RepID),
+  FOREIGN KEY (EmpID) REFERENCES employee(EmpID),
+  FOREIGN KEY (RepID) REFERENCES report(RepID)
 );
