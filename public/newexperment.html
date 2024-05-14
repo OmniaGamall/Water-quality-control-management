@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="ar">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css.map" />
+    <link rel="stylesheet" href="./css/all.min.css" />
+    <link rel="stylesheet" href="./css/newexperment.css" />
+
+    
+
+
+    <title>New Experiment</title>
+</head>
+
+<!-- ---------------------------body-------------------------------------------------------------------- -->
+    <body>
+    <div class="container mt-5 ">
+    
+    <h1 class="text-center">New Experiment</h1>
+    <a href="Experiments/experiments.html"><button class="backBtn"><i class="fa-solid fa-circle-chevron-left "></i></button></a>
+    
+    <!-- --------------user box--------------------- -->
+    <div class="user">
+    <div>
+    <i class="icon fa-solid fa-user-alt fa-2x text-dark rounded-3"></i>
+    </div>
+    <div class="row gx-1 gy-1">
+    <div class="col-md-12 sm-6">
+    <label for="by" class="form-label">By :</label>
+    <br>
+    <input type="text" id="by" class="form-control" name="by" required placeholder="alaa zaitoon">
+    </div>
+    </div>
+    </div>
+    <!-- -----------------------------form-------------------------- -->
+    <div class="boxs">
+    <form class="row g-3">
+    
+    
+    <div class="col-md-3">
+    <label for="name" class="form-label solid-label">Name :</label>
+    <input type="text" class="box1 form-control" id="name" name="name" required autocomplete="experiment-name">
+    </div>
+    
+    
+    <div class="col-md-3">
+    <label for="output" class="form-label solid-label">Output :</label>
+    <input type="text" class=" box1 form-control" id="output" name="output" required autocomplete="experiment-output">
+    </div>
+    
+    
+    <div class="col-md-3">
+    <label for="duration" class="form-label solid-label">Duration :</label>
+    <input type="text" class=" box1 form-control" id="duration" name="duration" required autocomplete="experiment-duration">
+    </div>
+    
+    
+    <div class="col-md-3">
+    <label for="temp" class="form-label solid-label">Temp :</label>
+    <input type="text" class=" box1 form-control" id="temp" name ="temp" required autocomplete="experiment-temp">
+    </div>
+    
+    
+    <div class="col-md-12">
+    <label for="equipment" class="form-label solid-label">Equipment :</label>
+    <textarea  class="box1 form-control" id="equipment" rows="3" required></textarea>
+    </div>
+    
+    
+    <div class="col-md-12">
+    <label for="instructions" class="form-label solid-label">Equipment :</label>
+    <textarea class=" box1 form-control" id="instructions" rows="6" required></textarea>
+    </div>
+    
+    
+    </form>
+    </div>
+    
+    <!-- buttons -->
+    <div class="btns text-center">
+        <button id="cancelButton" type="button" class="btn btn-lg  btn1 ">Cancel</button>
+        <button type="button" class="btn btn-lg  btn2 ">Saved</button>
+    </div>
+        
+
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("cancelButton").addEventListener("click", function() {
+                document.getElementById("name").value = "";
+                document.getElementById("output").value = "";
+                document.getElementById("duration").value = "";
+                document.getElementById("temp").value = "";
+                document.getElementById("equipment").value = "";
+                document.getElementById("instructions").value = "";
+            });
+        });
+    </script>
+    
+    </body>
+    </html>

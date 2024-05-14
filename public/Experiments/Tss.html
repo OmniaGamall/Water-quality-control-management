@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Language" content="ar">
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css.map" />
+    <link rel="stylesheet" href="../css/all.min.css" />
+    <title>Water Experiments System</title>
+  
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .backBtn {
+            color: #378EB3;
+            border: none;
+            background-color: #EAEDF2;
+            cursor: pointer;
+            width: 80px;
+            height: 80px;
+            font-size: 60px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .container {
+            background-color: #EAEDF2;
+          position: relative;
+            margin: 30px;
+            padding: 30px;
+            box-sizing: border-box;
+           display: flex; 
+            flex-direction: column;
+        }
+
+        .card,.card2 {
+            position: relative;
+            background: white;
+            padding:15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-radius: 25px;
+            margin-top: 20px;
+       
+        }
+        h2{
+            text-align: center;
+            margin: 40px;
+            font-weight: bold;
+            font-size: 3em;
+            
+        }
+        .box1{
+
+            height: 26em;
+          
+        }
+        .box2,.box3{
+
+            height: 5em;
+           
+        }
+        h3{
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 2em;
+            color:#337f9f;
+        }
+         p{
+
+            text-align: center;
+            margin-top: .5em;
+            font-size: 1.8em;
+        }
+        .card2 .box2{
+          padding: 0;
+          margin: 0;
+          border: none;
+          outline: none;
+
+        }
+    .btns{
+
+        margin-top: 4em;
+    }
+
+        .color1{
+
+          background-color: #fff;
+          color:#378EB3 ;
+          border-color: #378EB3;
+        }
+        .color1:hover{
+
+            background-color: #a7d8ed;
+        }
+
+        .color2{
+
+            background-color: #378EB3;
+          color:#fff ;
+          border-color: #378EB3;
+        }
+        .color2:hover{
+
+            background-color: #a7d8ed;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="experiments.html"><button class="backBtn"><img src="../images/Default.png"></button></a>
+        <h2>TSS</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Duration:</h3>
+                        <div class="card">
+                            <div class="box2">
+                                <p>120 min</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <h3>Temp:</h3>
+                        <div class="card">
+                            <div class="box3">
+                                <p>150</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+               
+                <h3 >Instruction:</h3>
+                <div class="card">
+                        <p dir="auto">
+                            1. نقوم بإضافة 1.5ml من محلول Dichromate إلى 3.5ml من محلول sulphoric Acid and silver و 2.5ml من العينة.
+                            <br>
+                            2. الحجم الكلى بيكون ( 7.5ml ).
+                            <br>
+                            3. نحضر Blank باستخدام (2.5ml) ماء مقطر.
+                            <br>
+                            4. ترج جيدا وتوضع في ال Digestor لمدة ساعتين عند درجة حرارة 150.
+                            <br>
+                            5. نغلق الجهاز ثم نجمع الأنابيب خارجا لتبرد لدرجة حرارة الغرفة.
+                            <br>
+                            6. كن حذرا أثناء تبريد العينة بواسطة ماء الصنبور.
+                            <br>
+                            7. نقوم بالقياس عند طول موجي 620 لل high range عينة خام.
+                            <br>
+                            8. نقوم بالقياس عند طول موجي 420 للlow range عينة قبل كلور.
+                        </p>
+                </div>
+             
+            </div>
+        </div>
+<!--///////////////////////////////////////////////////////////////////////////////////////////////-->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h3>Equipment:</h3>
+                <div class="card2">
+                    <div class="box2">
+                        <p>1.Digestor<br>2.انابيب اختبار</p>
+                    </div>
+                </div>
+            </div>
+
+             
+            <div class="col-md-2 ">
+                <h3>Inf:</h3>
+                <div class="card2">
+                    <div class="box2" id="infData" contenteditable="true" >
+                        
+                    </div>
+                </div>
+            </div>  
+
+            
+            <div class="col-md-2"  >
+                <h3>EFF:</h3>
+                <div class="card2">
+                    <div class="box2" id="effData"  contenteditable="true" >
+                
+                    </div>
+                </div>
+            </div>  
+
+          
+            <div class="col-md-2" >
+                <h3>Blank:</h3>
+                <div class="card2">
+                    <div class="box2" id="blankData" contenteditable="true">
+                       
+                    </div>
+                </div>
+           
+            </div>
+        </div>
+
+        <div class="btns text-center">
+            <button id="cancelButton" type="button" class="btn btn-lg  color1 ">Cancel</button>
+            <button type="button" class="btn btn-lg  color2 ">Saved</button>
+       
+        </div>
+       
+    </div>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("cancelButton").addEventListener("click", function() {
+        document.getElementById("infData").textContent = "";
+        document.getElementById("effData").textContent = "";
+        document.getElementById("blankData").textContent = "";
+    });
+});
+</script>
+
+</body>
+
+</html>

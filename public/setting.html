@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/setting.css">
+</head>
+<body>
+   
+
+    <div class="menu">
+        <ul class=" p-0">
+            <li>
+                <a href="" >
+                    <i class="fa-solid fa-droplet fa-2xl"></i>
+                    <h3>Water</h3>
+                </a>
+            </li>
+            <li>
+                <a href="home.html" class="active">
+                    <i class="fa-solid fa-house-user fa-2xl"></i>
+                    <h4>Home</h4>
+                </a>
+            </li>
+
+            <li>
+                <a href="Experiments/experiments.html">
+                    <i class="fa-solid fa-users fa-2xl"></i>
+                    <h4>Experiments</h4>
+                </a>
+            </li>
+
+            <li>
+                <a href="tasks.html">
+                    <i class="fa-solid fa-file-circle-check fa-2xl"></i>
+                    <h4>Tasks</h4>
+                </a>
+            </li>
+
+            <li>
+                <a href="repots.html">
+                    <i class="fa-solid fa-window-restore fa-2xl"></i>
+                    <h4>Reports</h4>
+                </a>
+            </li>
+
+            <li>
+                <a href="setting.html">
+                    <i class="fa-solid fa-gear fa-2xl"></i>
+                    <h4>Settings</h4>
+                </a>
+            </li>
+            <li class="logout">
+                <a href="index.html">
+                    <i class="fa-solid fa-arrow-right-from-bracket fa-2xl"></i>
+                    <h4>Logout</h4>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+    <section class="container">
+      
+        <div class="d-flex justify-content-between">
+       
+            <div class="texts">
+
+                <div class=" col d-flex back text-start mb-3 ">
+                    <a href="home.html">
+                        <i class="fas fa-chevron-left fa-2x icon " ></i>
+                    </a>
+                    <h2 >Settings</h2>
+                    </div>
+
+                    <div class="col d-flex  back text-start  ">
+                        <i class="fas fa-pen fa-2x icon "></i>
+                        <h2 >Edit Profile</h2>
+                      </div>
+            </div>
+
+        <div class="photo">
+            <img src="images/Avatar@2x.png" alt="Profile Photo" class="profile-photo">
+        </div>
+
+
+        </div>  
+   
+
+
+
+        <div class="row">
+          <div class="col-md-6 offset-md-2 mt-5 ">
+            <form>
+                <div class="row">
+                    <div class=" col mb-3">
+                    <label for="name" class="form-label solid-label">First Name</label>
+                    <input type="text" class="form-control" id="first-name" name="name" required>
+                    </div>
+
+                        <div class=" col mb-3">
+                        <label for="name" class="form-label  solid-label">Last Name</label>
+                        <input type="text" class="form-control" id="last-name" name="name" required>
+                        </div>
+                </div>
+
+              <div class="mb-3">
+                <label for="email" class="form-label  solid-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="address" class="form-label  solid-label">Address</label>
+                <input type="address" class="form-control" id="address" name="address" required>
+              </div>
+
+              <div class="mb-3">
+                <label for=" Contact" class="form-label  solid-label">Contact Number</label>
+                <input type="contact" class="form-control" id="contact" name="contact" required>
+              </div>
+
+              <div class="row">
+                <div class=" col mb-3">
+                <label for="city" class="form-label  solid-label">City</label>
+                <input type="text" class="form-control" id="city" name="city" required>
+                </div>
+
+                    <div class=" col mb-3">
+                    <label for="state" class="form-label  solid-label">State</label>
+                    <input type="text" class="form-control" id="state" name="state" required>
+                    </div>
+            </div>
+
+            <div class="mb-3">
+                <label for=" password" class="form-label  solid-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+              </div>
+
+              
+              <div class="btns text-center">
+                <button id="cancelButton" type="button" class="btn btn-lg  color1 ">Cancel</button>
+                <button type="button" class="btn btn-lg  color2 ">Saved</button>
+            </div>
+
+            </form>
+          </div>
+        </div>
+    
+    </section>
+
+    <script>
+          document.getElementById("cancelButton").addEventListener("click", function() {
+            // Reset input fields
+            document.getElementById("first-name").value = "";
+            document.getElementById("last-name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("address").value = "";
+            document.getElementById("contact").value = "";
+            document.getElementById("city").value = "";
+            document.getElementById("state").value = "";
+            document.getElementById("password").value = "";
+        });
+    </script>
+
+</body>
+</html>

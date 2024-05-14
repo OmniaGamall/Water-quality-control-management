@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>reports</title>
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/reports.css" />
+  </head>
+  <body>
+    <section class="py-5" style="background-color: #ffffff">
+      <!-- d:/fieldTraining/New folder/water/css/reports.css -->
+      <div class="container text-center">
+       <div class="back text-start">
+        <a href="home.html">
+          <i class="fa-solid fa-circle-chevron-left fa-3x text-info"></i>
+       </div>
+        </a>
+        <h1 class="mb-4">Daily Reports</h1>
+        <div class="row gx-5 gy-3 justify-content-center">
+          <div class="col-md-4 sm-6">
+            <div
+              class="inner d-flex justify-content-center gap-3 py-3 rounded-3 bg-opacity-25 align-items-center text-light"
+              style="background-color: #378eb3"
+            >
+              <i class="fa-solid fa-user-alt fa-2x text-dark rounded-3"></i>
+              <div class="info">
+                <h5>chemist name</h5>
+                <h6>ahmed ali</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 sm-6">
+            <div
+              class="inner d-flex justify-content-center gap-3 py-3 rounded-3 bg-opacity-25 align-items-center text-light"
+              style="background-color: #378eb3"
+            >
+              <i class="fa-solid fa-user-alt fa-2x text-dark rounded-3"></i>
+              <div class="info">
+                <h5>Engineer</h5>
+                <h6>Mohamed ali</h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 sm-6">
+            <div
+              class="inner d-flex justify-content-center gap-3 py-3 rounded-3 bg-opacity-25 align-items-center text-light"
+              style="background-color: #378eb3"
+            >
+              <i class="fa-solid fa-user-alt fa-2x text-dark rounded-3"></i>
+              <div class="info">
+                <h5>Efficiency</h5>
+                <h6>82%</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row gx-5 mt-5 gy-4 justify-content-between">
+          <div class="col-md-4 col-sm-6">
+            <div class="inner">
+              <h5>Flow</h5>
+              <input
+                type="text"
+                class="form-control py-2 rounded-3"
+                value="m³/day"
+                name="flow"
+              />
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="inner">
+              <h5>R.Cl₂</h5>
+              <input
+                type="text"
+                class="form-control py-3 rounded-3"
+                value="mg/l"
+                name="r.cl2"
+              />
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="inner">
+              <h5>Total Duration</h5>
+              <input
+                type="text"
+                class="form-control py-2 rounded-3"
+                value="120 Mins"
+                name="total duration"
+              />
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="inner">
+              <h4>Date</h4>
+              <input type="time" class="form-control py-2 rounded-3" />
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="inner">
+              <h5>Day</h5>
+              <input type="date" class="form-control py-2 rounded-3" />
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="inner">
+              <h5>Temp</h5>
+              <input type="number" class="form-control py-2 rounded-3" />
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4 bg-light py-3 shadow">
+          <div class="col-md col-sm-6">
+            <h5>Test Name</h5>
+            <p class="text-secondary">COD</p>
+            <p class="text-secondary">Pod</p>
+            <p class="text-secondary">Tes</p>
+            <p class="text-secondary">COD</p>
+            <p class="text-secondary">COD</p>
+            <p class="text-secondary">Ph</p>
+          </div>
+          <div class="col-md col-sm-6">
+            <h5>Test Duration</h5>
+            <p class="text-secondary">20 min</p>
+            <p class="text-secondary">20 min</p>
+            <p class="text-secondary">30 min</p>
+            <p class="text-secondary">10 min</p>
+            <p class="text-secondary">5 min</p>
+            <p class="text-secondary">10 min</p>
+          </div>
+          <div class="col-md col-sm-6">
+            <h4>Inf</h4>
+          </div>
+          <div class="col-md col-sm-6">
+            <h4>Eff</h4>
+          </div>
+          <div class="col-md col-sm-6">
+            <h5>limit</h5>
+            <p class="text-secondary">80 mg/l</p>
+            <p class="text-secondary">50 mg/l</p>
+            <p class="text-secondary">60 mg/l</p>
+            <p class="text-secondary">100 mg/l</p>
+            <p class="text-secondary">80 mg/l</p>
+            <p class="text-secondary">90 mg/l</p>
+          </div>
+        </div>
+        <div class="text-start md-12">
+          <button class="btn border-info mt-3 btn-outline-info" id="add-btn">
+            <i class="fas fa-plus"></i>
+            add note
+          </button>
+        </div>
+        <div class="row" style="display: none;" id="notes">
+          <div class="col-md-12">
+            <div class="inner text-start" id="inner">
+              <textarea class="form-control pt-2 pb-5 mt-4 lead rounded-3" name="note" placeholder="write your note here" cols="30" rows="10"></textarea>
+              <button class="btn btn-outline-info mt-3">
+                <i class="fa-solid fa-paper-plane"></i>
+                send
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/all.min.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>

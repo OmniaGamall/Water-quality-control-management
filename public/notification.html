@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.css" rel="stylesheet">
+
+    <style>
+
+        *{
+            box-sizing: border-box;
+            margin: 0%;
+            padding: 0%;
+            list-style: none;
+        }
+
+        :root {
+            --blue: #D4EDF8;
+            --white: #fff;
+            --green: #32718B;
+            --background: #D4EDF8;
+            --blue2: #5d39eb;
+        }
+
+        body{
+            display: flex;
+            font-family: "Ubuntu", sans-serif;
+        }
+        .menu{
+            width: 80px;
+            height: 140vh;
+            padding: 20px 0;
+            background-color:  #378EB3;
+            border-radius: 0 20px 20px 0;
+            overflow: hidden;
+            transition: .5s;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 800;
+        }
+        .menu:hover{
+            width: 280px;
+        }
+        .p-0 li a{
+            text-decoration: none;
+            display: block;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            color: white;
+            gap: 40px;
+            transition: 2s;
+            margin-bottom: 30%;
+        }
+        .p-0 li a:hover{
+            background-color: var(--blue) ; /* bisque;*/   
+        }
+        .p-0 .active{
+            background-color: var(--blue) ; /* bisque;*/   
+        }
+
+        .p-0 li a h4{
+            font-size: 1.2rem;
+        }
+        .p-0{
+            position: relative;
+            height: 95%;
+        }
+
+        /* ############ */
+        .box{
+            background-color: #dadbef6e;
+            margin: 1%;
+            padding: 5%;
+            width: 100%;
+        }
+        h1{
+            font-size:250%;
+            font-weight: bold;
+        }
+        .nav{
+            --bs-nav-link-hover-color:var(--bs-nav-link-hover-color)
+        }
+        .nav-link{
+            color: rgb(0, 0, 0, 0.5);
+        }
+        .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+            font-weight: bold;
+            background: none;
+        }
+        
+        .name{
+            font-size: 80%;
+            font-weight: 700;
+            margin-left: 5px;
+            margin-right: 15pt;
+        }
+        .time{
+            font-size: 65%;
+            color: gray;
+        }
+        .message{
+            margin-left: 33px; 
+            font-size: 12px;
+            color: rgb(0, 0, 0, 0.5);
+        }
+        .trashbtn{
+            border: none;
+            float: right;
+        }
+
+
+
+    </style>
+</head>
+<body>
+   
+
+    <div class="menu">
+        <ul class="p-0">
+            <li>
+                <a href="" >
+                    <i class="fa-solid fa-droplet fa-2xl"></i>
+                    <h3>Water</h3>
+                </a>
+            </li>
+            <li>
+                <a href="home.html">
+                    <i class="fa-solid fa-house-user fa-2xl"></i>
+                    <h4>Home</h4>
+                </a>
+            </li>
+
+            <li>
+                <a href="notification.html" class="active">
+                    <i class="fa-regular fa-bell fa-2xl"></i>
+                    <h4>Notification</h4>
+                </a>
+            </li>
+
+            <li>
+                <a href="repots.html">
+                    <i class="fa-solid fa-window-restore fa-2xl"></i>
+                    <h4>Reports</h4>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+
+    <!-- ######################## -->
+
+    <div class="box">
+        <h1>Notifications</h1>
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Overview</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Shared with me</button>
+            </li>
+            
+        </ul><br>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                <div class="row1">
+                    <div style="display: inline-block;">
+                        <i class="fa-solid fa-circle-user fa-xl" style="color: #60ABD2;"></i>
+                        <span class="name">Abdullah Mohamed</span><span class="time">52 min ago</span>
+                        <div class="message">Hi All! <br> ......................<br>..................</div>
+                        
+                    </div>
+                    <button class="trashbtn"><i class="fa-regular fa-trash-can" style="color: rgb(0, 0, 0, 0.4);"></i></button>
+                    <hr>
+                </div>
+
+                <div class="row1">
+                    <div style="display: inline-block;">
+                        <i class="fa-solid fa-circle-user fa-xl" style="color: #60ABD2;"></i>
+                        <span class="name">Omnia Gamal</span><span class="time">52 min ago</span>
+                        <div class="message">Hi All! <br> ......................<br>..................</div>
+                        
+                    </div>
+                    <button class="trashbtn"><i class="fa-regular fa-trash-can" style="color: rgb(0, 0, 0, 0.4);"></i></button>
+                    <hr>
+                </div>
+
+                <div class="row1">
+                    <div style="display: inline-block;">
+                        <i class="fa-solid fa-circle-user fa-xl" style="color: #60ABD2;"></i>
+                        <span class="name">Basmala Abuzied</span><span class="time">52 min ago</span>
+                        <div class="message">Hi All! <br> ......................<br>..................</div>
+                        
+                    </div>
+                    <button class="trashbtn"><i class="fa-regular fa-trash-can" style="color: rgb(0, 0, 0, 0.4);"></i></button>
+                    <hr>
+                </div>
+
+                <div class="row1">
+                    <div style="display: inline-block;">
+                        <i class="fa-solid fa-circle-user fa-xl" style="color: #60ABD2;"></i>
+                        <span class="name">Tasbeeh</span><span class="time">52 min ago</span>
+                        <div class="message">Hi All! <br> ......................<br>..................</div>
+                        
+                    </div>
+                    <button class="trashbtn"><i class="fa-regular fa-trash-can" style="color: rgb(0, 0, 0, 0.4);"></i></button>
+                    <hr>
+                </div>
+
+
+            </div>
+
+
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                <div class="row1">
+                    <div style="display: inline-block;">
+                        <i class="fa-solid fa-circle-user fa-xl" style="color: #60ABD2;"></i>
+                        <span class="name">Omnia Gamal</span><span class="time">52 min ago</span>
+                        <div class="message">Hi All! <br> ......................<br>..................</div>
+                        
+                    </div>
+                    <button class="trashbtn"><i class="fa-regular fa-trash-can" style="color: rgb(0, 0, 0, 0.4);"></i></button>
+                    <hr>
+                </div>
+            
+                <div class="row1">
+                    <div style="display: inline-block;">
+                        <i class="fa-solid fa-circle-user fa-xl" style="color: #60ABD2;"></i>
+                        <span class="name">Abdullah Mohamed</span><span class="time">52 min ago</span>
+                        <div class="message">Hi All! <br> ......................<br>..................</div>
+                        
+                    </div>
+                    <button class="trashbtn"><i class="fa-regular fa-trash-can" style="color: rgb(0, 0, 0, 0.4);"></i></button>
+                    <hr>
+                </div>
+
+                <div class="row1">
+                    <div style="display: inline-block;">
+                        <i class="fa-solid fa-circle-user fa-xl" style="color: #60ABD2;"></i>
+                        <span class="name">Tasbeeh</span><span class="time">52 min ago</span>
+                        <div class="message">Hi All! <br> ......................<br>..................</div>
+                        
+                    </div>
+                    <button class="trashbtn"><i class="fa-regular fa-trash-can" style="color: rgb(0, 0, 0, 0.4);"></i></button>
+                    <hr>
+                </div>
+
+                <div class="row1">
+                    <div style="display: inline-block;">
+                        <i class="fa-solid fa-circle-user fa-xl" style="color: #60ABD2;"></i>
+                        <span class="name">Basmala Abuzied</span><span class="time">52 min ago</span>
+                        <div class="message">Hi All! <br> ......................<br>..................</div>
+                        
+                    </div>
+                    <button class="trashbtn"><i class="fa-regular fa-trash-can" style="color: rgb(0, 0, 0, 0.4);"></i></button>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+        $('.trashbtn').click(function() {
+            $(this).closest('.row1').remove();
+        });
+        });
+  </script>
+
+</body>
+</html>

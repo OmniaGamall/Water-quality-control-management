@@ -1,0 +1,87 @@
+*{
+	
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+
+}
+.container{
+	width:90%;
+	padding:20px 100px 70px 100px;
+	background-color:#EAEDF2;
+	position:relative;
+	margin-bottom:50px;
+	
+}
+ h1{
+	font-size:50px;
+}
+
+
+/**********userbox*****************/
+.user{
+	width:30%;
+	display:flex;
+	background-color:#378EB3;
+	color:white;
+	border-radius:15px;
+	padding:10px;
+	margin:30px 0 30px 0;
+}
+.icon{
+	padding:20px 7px 0px 0px;
+}
+.user input{
+	width:99%;
+	border:none;
+	border-radius:10px;
+}
+/***********************form*******************************/
+.boxs{
+	width:100%;
+	margin:auto;
+}
+.box1{
+	border-radius:15px;
+	padding:15px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+/*************buttons******************/
+.btn1{
+	background-color:#FFFFFF;
+	color:#378EB3;
+	border-width:1px;
+	border-color:#378EB3;
+	margin:50px 0 0 30px;
+}
+.btn1:hover{
+
+	background-color: #a7d8ed;
+}
+
+.btn2{
+	background-color:#378EB3;
+	color:#FFFFFF;
+	border:none;
+	margin:50px 0 0 50px;
+	border-color: #378EB3;
+}
+.btn2:hover{
+
+	background-color: #a7d8ed;
+}
+.backBtn{
+	background: none;
+	color: #378EB3;
+	border: none;
+	cursor: pointer;
+	position: absolute;
+	top:38px;
+	left:20px;
+	font-size: 50px;
+}
+
+
+.solid-label{
+
+	font-size: 1.3em;
+	 }

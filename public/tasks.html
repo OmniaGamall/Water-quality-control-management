@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Checklist</title>
+<!-- تضمين مكتبة Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.css" rel="stylesheet">
+<style>
+  body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background:linear-gradient(to bottom right , #D4EDF8 65%, #fff 35%);
+        height: 100vh;
+  }
+  .backBtn{
+      background-color: #D4EDF8;
+      color: #378EB3;
+      border: none;
+      cursor: pointer;
+      width: 80px;
+      height: 80px;
+      font-size: 50px;
+  }
+  h1{
+    margin: 20px 20px 20px 30px;
+  }
+  hr{
+    color: gray;
+  }
+  
+  .container {
+    max-width: 80%;
+    min-height: 70%;
+    max-height: 200%;
+    /* overflow: hidden; */
+    position:relative;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-top: 10px; 
+    padding-bottom: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);   
+  }
+  
+  .tasks {
+    list-style: none; 
+  }
+  .tasks li {
+    margin-bottom: 30px;
+  }
+  
+  .completed {
+    text-decoration: line-through;
+    color: #888;
+  }
+  .task-name{
+    border: none;
+  }
+
+  /* تغيير لون checkbox الى الاسود */
+  input[type="checkbox"] {
+    cursor: pointer;
+    accent-color: black;
+    mix-blend-mode: multiply;
+  }
+  
+  .up{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    float: right;
+  } 
+  .down{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    float: right;
+  }
+
+  .dropbtn{
+    border: none;
+    background-color: #ffffff;
+    cursor: pointer;
+  }
+  .dropdown {
+    position: relative;
+    display: inline;
+    float: right;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #D4EDF8;
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 10px 10px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #ffffff;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .description{
+    border: none;
+    display: block;
+    color: gray;
+    margin-left: 23px;
+  }  
+  #addTaskBtn{
+    cursor: pointer;
+    background-color: white;
+    border: none;
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;    
+  }
+  .task-counter{
+    margin-left: 20px; 
+    margin-top: 20px;
+    color: rgba(0, 0, 0, 0.7);
+  }
+</style>
+</head>
+<body>
+  <a href="home.html"><button class="backBtn"><i class="fa-solid fa-circle-chevron-left"></i></button></a>
+
+  <div class="container">
+    <h1>My Checklist</h1>
+    <hr>
+    <ul class="tasks" id="taskList">
+      <li>
+        <input type="checkbox">
+        <input type="text" class="task-name" value="" placeholder="Task name" readonly>
+        <div class="dropdown">
+          <button class="dropbtn"><i class="fa-sharp fa-solid fa-bars"></i></button>
+          <div class="dropdown-content">
+            <a href="#" class="edit">Edit</a>
+            <a href="#" class="delete">Delete</a>
+          </div>
+        </div>
+        <button class="down"><i class="fa-solid fa-chevron-up fa-flip-vertical"></i></button>
+        <button class="up"><i class="fa-solid fa-chevron-up"></i></i></button>
+        <input type="text" placeholder="Description ..." class="description">
+      </li>
+      <li>
+        <input type="checkbox">
+        <input type="text" class="task-name" value="" placeholder="Task name" readonly>
+        <div class="dropdown">
+          <button class="dropbtn"><i class="fa-sharp fa-solid fa-bars"></i></button>
+          <div class="dropdown-content">
+            <a href="#" class="edit">Edit</a>
+            <a href="#" class="delete">Delete</a>
+          </div>
+        </div>
+        <button class="down"><i class="fa-solid fa-chevron-up fa-flip-vertical"></i></button>
+        <button class="up"><i class="fa-solid fa-chevron-up"></i></i></button>
+        <input type="text" placeholder="Description ..." class="description">
+      </li>
+      <li>
+        <input type="checkbox">
+        <input type="text" class="task-name" value="" placeholder="Task name" readonly>
+        <div class="dropdown">
+          <button class="dropbtn"><i class="fa-sharp fa-solid fa-bars"></i></button>
+          <div class="dropdown-content">
+            <a href="#" class="edit">Edit</a>
+            <a href="#" class="delete">Delete</a>
+          </div>
+        </div>
+        <button class="down"><i class="fa-solid fa-chevron-up fa-flip-vertical"></i></button>
+        <button class="up"><i class="fa-solid fa-chevron-up"></i></i></button>
+        <input type="text" placeholder="Description ..." class="description">
+      </li>
+      <li>
+        <input type="checkbox">
+        <input type="text" class="task-name" value="" placeholder="Task name" readonly>
+        <div class="dropdown">
+          <button class="dropbtn"><i class="fa-sharp fa-solid fa-bars"></i></button>
+          <div class="dropdown-content">
+            <a href="#" class="edit">Edit</a>
+            <a href="#" class="delete">Delete</a>
+          </div>
+        </div>
+        <button class="down"><i class="fa-solid fa-chevron-up fa-flip-vertical"></i></button>
+        <button class="up"><i class="fa-solid fa-chevron-up"></i></i></button>
+        <input type="text" placeholder="Description ..." class="description">
+      </li>
+      <li>
+        <input type="checkbox">
+        <input type="text" class="task-name" value="" placeholder="Task name" readonly>
+        <div class="dropdown">
+          <button class="dropbtn"><i class="fa-sharp fa-solid fa-bars"></i></button>
+          <div class="dropdown-content">
+            <a href="#" class="edit">Edit</a>
+            <a href="#" class="delete">Delete</a>
+          </div>
+        </div>
+        <button class="down"><i class="fa-solid fa-chevron-up fa-flip-vertical"></i></button>
+        <button class="up"><i class="fa-solid fa-chevron-up"></i></i></button>
+        <input type="text" placeholder="Description ..." class="description">
+      </li>
+    </ul>
+    <hr>
+    <button id="addTaskBtn"><i class="fa-solid fa-plus"></i> Add Task</button>
+    <div class="task-counter" style="margin-left: 20px; margin-top: 20px;">
+      <i class="fa-solid fa-circle-check"></i>Completed <span id="completedTasks">0</span> of <span id="totalTasks">5</span> 
+    </div>
+  </div>
+
+
+
+  <script>
+    
+    document.addEventListener("DOMContentLoaded", function() {
+      const taskList = document.getElementById("taskList");
+      const addTaskBtn = document.getElementById("addTaskBtn");
+      const completedTasksSpan = document.getElementById("completedTasks");
+      const totalTasksSpan = document.getElementById("totalTasks");
+      // عدد التاسكات الكلي
+      let totalTasks = 5;
+      // عدد التاسكات التي تمت
+      let completedTasks = 0;
+      addTaskBtn.addEventListener("click", function() {
+        totalTasks++;
+        updateTaskCounter();
+      });
+      function updateTaskCounter() {
+        completedTasksSpan.textContent = completedTasks;
+        totalTasksSpan.textContent = totalTasks;
+      }
+
+
+      // إضافة مستمعين لأحداث النقر للأسهم الجديدة
+      taskList.addEventListener("click", function(event) {
+        const target = event.target;
+        if (target.classList.contains("up")) {
+          const task = target.parentElement;
+          const previousTask = task.previousElementSibling;
+          if (previousTask) {
+            task.parentNode.insertBefore(task, previousTask);
+          }
+        } else if (target.classList.contains("down")) {
+          const task = target.parentElement;
+          const nextTask = task.nextElementSibling;
+          if (nextTask) {
+            task.parentNode.insertBefore(nextTask, task);
+          }
+        } else if (target.classList.contains("delete")) {
+            const task = target.closest("li");
+            const checkbox = task.querySelector('input[type="checkbox"]');
+            if (checkbox.checked) {
+              completedTasks--;
+            }
+            totalTasks--;
+            task.remove();
+            updateTaskCounter();
+          }
+      }); 
+      // إضافة تاسك جديدة
+      addTaskBtn.addEventListener("click", function() {
+        const newTask = createTaskItem("", "وصف المهمة");
+        taskList.appendChild(newTask);
+        // إضافة مستمعين لأحداث النقر للأسهم الجديدة
+        const upButtons = newTask.querySelectorAll('.up');
+        upButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const task = button.parentElement;
+            const previousTask = task.previousElementSibling;
+            if (previousTask) {
+              task.parentNode.insertBefore(task, previousTask);
+            }
+          });
+        });
+        const downButtons = newTask.querySelectorAll('.down');
+        downButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const task = button.parentElement;
+            const nextTask = task.nextElementSibling;
+            if (nextTask) {
+              task.parentNode.insertBefore(nextTask, task);
+            }
+          });
+        });
+      });
+      document.querySelectorAll('.up').forEach(button => {
+      button.addEventListener('click', () => {
+        const task = button.parentElement;
+        const previousTask = task.previousElementSibling;
+        if (previousTask) {
+          task.parentNode.insertBefore(task, previousTask);
+        }
+      });
+    });
+    document.querySelectorAll('.down').forEach(button => {
+      button.addEventListener('click', () => {
+        const task = button.parentElement;
+        const nextTask = task.nextElementSibling;
+        if (nextTask) {
+          task.parentNode.insertBefore(nextTask, task);
+        }
+      });
+    });
+      // تحديث النص عند النقر على زرار التعديل
+      taskList.addEventListener("click", function(event) {
+        const target = event.target;
+        if (target.classList.contains("edit")) {
+          const taskItem = target.closest("li");
+          const taskNameInput = taskItem.querySelector(".task-name");
+          taskNameInput.removeAttribute("readonly");
+          taskNameInput.focus();
+        } else if (target.classList.contains("delete")) {
+          const taskItem = target.closest("li");
+          taskItem.remove();
+        }
+      });
+      // تحديث الشطب عندما يتم وضع علامة على التاسك كمكتمل
+      taskList.addEventListener("change", function(event) {
+        const target = event.target;
+        if (target.type === "checkbox") {
+          const taskItem = target.nextElementSibling;
+          if (target.checked) {
+            taskItem.classList.add("completed");
+            completedTasks++;
+          } else {
+            taskItem.classList.remove("completed");
+          }
+          updateTaskCounter();
+        }
+      });
+      // إنشاء عنصر تاسك جديد
+      function createTaskItem(taskName) {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <input type="checkbox">
+          <input type="text" class="task-name" value="" placeholder="Task name" readonly>
+          <div class="dropdown">
+            <button class="dropbtn"><i class="fa-sharp fa-solid fa-bars"></i></button>
+            <div class="dropdown-content">
+              <a href="#" class="edit">Edit</a>
+              <a href="#" class="delete">Delete</a>
+            </div>
+          </div>
+          <button class="down"><i class="fa-solid fa-chevron-up fa-flip-vertical"></i></button>
+          <button class="up"><i class="fa-solid fa-chevron-up"></i></button>
+          <input type="text" placeholder="Description ..." class="description">
+        `;
+        return li;
+      }
+    });
+  </script>
+</body>
+</html>

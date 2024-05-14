@@ -1,0 +1,168 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiments</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css.map" />
+    <link rel="stylesheet" href="../css/all.min.css" />
+    <!-- تضمين مكتبة Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background:linear-gradient(to bottom right , #D4EDF8 50%, #fff 50%);
+            height: 100%;
+        }
+        .backBtn{
+            background: none;
+            color: #378EB3;
+            border: none;
+            cursor: pointer;
+            width: 80px;
+            height: 80px;
+            font-size: 50px;
+        }
+        #addButton{
+            background: none;
+            color: #378EB3;
+            border: none;
+            cursor: pointer;
+            width: 80px;
+            height: 80px;
+            font-size: 50px;
+            float: right;
+        }
+        h1{
+            text-align: center;
+            font-size: 350%;
+            padding-bottom: 5%;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        .contaier{
+            display: flex;
+            flex-wrap: wrap;
+            padding: 2 10%;
+           
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .experiment_box{
+            background: linear-gradient(to bottom , #378EB3 75% , #83C8E6 25%);
+            width: 17%;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            text-align: center;
+            padding: 10px;
+            height: 12em;
+        }
+        h2{
+            color: white;
+            font-size: 300%;
+            margin-top: 35px;
+        }
+        
+        .color1{
+            background-color: #fff;
+            color:black ;
+            border-color: #378EB3;
+            margin-top: 2em;
+            border-radius: 12px;
+            padding: 2px 20px;
+        }
+
+.color1:hover{
+background-color: #378EB3;
+}
+        
+        /* استجابة لأحجام الشاشة الصغيرة */
+        @media screen and (max-width: 768px) {
+            .experiment_box {
+                width: 45%;
+                background: linear-gradient(to bottom , #378EB3 70% , #83C8E6 25%)
+            }
+            h1 {
+                font-size: 250%;
+            }
+            h2{
+                font-size: 220%;
+            }
+
+            .color1{ 
+
+            margin-top: 2.5em;
+        }
+
+            .backBtn, #addButton {
+                width: 60px; /* تقليل عرض الأزرار في شاشات الأجهزة المحمولة */
+                height: 60px; /* تقليل ارتفاع الأزرار في شاشات الأجهزة المحمولة */
+                font-size: 40px; /* تقليل حجم الرموز في شاشات الأجهزة المحمولة */
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../home.html"><button class="backBtn"><i class="fa-solid fa-circle-chevron-left"></i></button></a>
+    
+    <a href="../newexperment.html"><button id="addButton"><i class="fa-solid fa-circle-plus"></i></button></a>
+    
+    <h1>Experiments</h1>
+    
+    <div class="contaier">
+        <div class="row">
+            <div class="experiment_box">
+                <h2 class="name">COD</h2>
+                <a href="COD.html" button type="button" class="btn btn-lg  color1 ">View</a>
+            </div>
+            <div class="experiment_box">
+                <h2 class="name">TSS</h2>
+                <a href="Tss.html" button type="button" class="btn btn-lg  color1 ">View</a>
+            </div>
+            <div class="experiment_box">
+                <h2 class="name">PH</h2>
+                <a href="PH.html" button type="button" class="btn btn-lg  color1 ">View</a>
+            </div>
+            <div class="experiment_box">
+                <h2 class="name">PO<sub>4</sub></h2>
+                <a href="PO4.html" button type="button" class="btn btn-lg  color1 ">View</a>
+            </div>
+            <div class="experiment_box">
+                <h2 class="name">DO</h2>
+                <a href="DO.html" button type="button" class="btn btn-lg  color1 ">View</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="experiment_box">
+                <h2 class="name">NO<sub>2</sub></h2>
+                <a href="NO2.html" button type="button" class="btn btn-lg  color1 ">View</a>
+            </div>
+            <div class="experiment_box">
+                <h2 class="name">PH</h2>
+                <a href="PH.html" button type="button" class="btn btn-lg  color1 ">View</a>
+            </div>
+            <div class="experiment_box">
+                <h2 class="name">BOD</h2>
+                <a href="BOD.html" button type="button" class="btn btn-lg  color1 ">View</a>
+            </div>
+            <div class="experiment_box">
+                <h2 class="name">NH<sub>3</sub></h2>
+                <a href="NH3.html" button type="button" class="btn btn-lg  color1 ">View</a>
+            </div>
+
+            <div class="experiment_box">
+                <h2 class="name">NO<sub>3</sub></h2>
+                <a href="NO3.html" button type="button" class="btn btn-lg  color1 ">View</a>
+            </div>
+        </div>
+        
+    </div>
+
+
+</body>
+</html>
