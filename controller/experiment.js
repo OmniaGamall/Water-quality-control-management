@@ -1,4 +1,6 @@
-const connection = require('../config/db.js');
+const path = require('path');
+const connection = require(path.join(path.resolve(), 'config/db.js'));
+
 
 let addExperiment = async(req, res) => {  
     const { name } = req.body;

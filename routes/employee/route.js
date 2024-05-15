@@ -1,5 +1,7 @@
 const app = require('express').Router();
-let empController = require("../../controller/employee.js")
+const path = require('path');
+
+let empController = require(path.join(path.resolve(), "controller/employee.js"))
 
 app.get('/getAllEmployees', empController.getEmployees);
 app.get('/employee/:id', empController.getEmp);

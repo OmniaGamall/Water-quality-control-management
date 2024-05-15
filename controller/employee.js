@@ -1,4 +1,5 @@
-const connection = require('../config/db.js');
+const path = require('path');
+const connection = require(path.join(path.resolve(), 'config/db.js'));
 
 const getEmployees = (req, res) => {
   connection.query('SELECT * FROM employee', (err, results) => {

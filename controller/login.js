@@ -1,7 +1,8 @@
-const connection = require('../config/db.js');
+const path = require('path');
+const connection = require(path.join(path.resolve(), 'config/db.js'));
 
 const getUsers = (req, res) => {
-  connection.query('SELECT * FROM login_form', (err, results) => {
+  connection.query('SELECT * FROM login_form', (err, result) => {
     if (err) {
       console.error('Error fetching users:', err);
       return res.status(500).send('Internal Server Error');
@@ -47,7 +48,7 @@ const addUser = (req, res) => {
 const deleteUser = (req, res) => {
   const { username } = req.params
   if (!username) {
-    return res.status(400).json({ error: 'User ID is required' });
+    return res.status(400).json({ error: 'Username is required' });
   }
   connection.query('DELETE FROM login_form WHERE username = ?', [username], (err) => {
     if (err) {

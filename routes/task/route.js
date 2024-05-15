@@ -1,6 +1,6 @@
 const app = require("express").Router()
-// Edit path to suitable for all os
-let taskController = require("../../controller/experiment.js")
+const path = require('path');
+const taskController = require(path.join(path.resolve(), "controller/task.js"))
 
 
 app.post("/addTask", taskController.addTask)
