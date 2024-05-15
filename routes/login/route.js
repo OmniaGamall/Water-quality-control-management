@@ -1,4 +1,5 @@
 const app = require('express').Router();
+// Edit path to suitable for all os
 let userController = require("../../controller/login.js")
 
 app.get('/getAllUsers', userController.getUsers);
