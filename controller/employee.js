@@ -32,6 +32,8 @@ const getEmp = (req, res) => {
 let chemistController = require(path.join(path.resolve(), "controller/chemist.js"))
 let engController = require(path.join(path.resolve(), "controller/engineer.js"))
 let itController = require(path.join(path.resolve(), "controller/it.js"))
+let labController = require(path.join(path.resolve(), "controller/lab.js"))
+let operatingController = require(path.join(path.resolve(), "controller/operating.js"))
 
 const addEmp = (req, res, next) => {
   const { Fname } = req.body
@@ -49,20 +51,30 @@ const addEmp = (req, res, next) => {
       console.error('Error adding employee:', err);
       return res.status(500).send('Internal Server Error');
     }
+
     req.body.employeeId = result.insertId;
+
     switch (RoleID) {
     case 4: // Chemist role
       const { Qualification } = req.body
       req.body.Qualification = Qualification;
-      return addChemistFromController(req, res);
+      return addChemist(req, res);
     case 5: // Engineer role
       const { specialization } = req.body
       req.body.specialization = specialization;
-      return addEngineerFromController(req, res);
+      return addEngineer(req, res);
     case 6: 
       const { skills } = req.body
       req.body.skills = skills;
-      return addITFromController(req, res);
+      return addIT(req, res);
+    case 3: 
+      const { Equipment_Knowledge } = req.body
+      req.body.Equipment_Knowledge = Equipment_Knowledge;
+      return addLab(req, res);
+    case 2: 
+      const { Certification } = req.body
+      req.body.Certification = Certification;
+      return addOperating(req, res);
     default:
       return res.status(400).json({ error: 'Unsupported role' });
   }
@@ -70,14 +82,20 @@ const addEmp = (req, res, next) => {
   });
 };
 
-const addChemistFromController = (req, res) => {
+const addChemist = (req, res) => {
   chemistController.addChemist(req, res);
 };
-const addEngineerFromController = (req, res) => {
+const addEngineer = (req, res) => {
   engController.addEngineer(req, res);
 };
-const addITFromController = (req, res) => {
+const addIT = (req, res) => {
   itController.addIT(req, res);
+};
+const addLab = (req, res) => {
+  labController.addLab(req, res);
+};
+const addOperating = (req, res) => {
+  operatingController.addOperating(req, res);
 };
 /// ************************************************************************************************************************ //
 
@@ -116,5 +134,15 @@ const updateEmp = (req, res) => {
     res.status(200).json({ message: 'Employee updated successfully' });
   });
 };
-module.exports = { getEmployees, getEmp, addEmp, deleteEmp, updateEmp, addChemistFromController,  addITFromController, addEngineerFromController};
+module.exports = { 
+  getEmployees, 
+  getEmp, 
+  addEmp, 
+  deleteEmp,
+  updateEmp, 
+  addChemist,  
+  addIT, 
+  addEngineer,
+  addLab,
+  addOperating};
 
