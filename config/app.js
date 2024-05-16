@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require('path');
+const app = express();
+
 
 let userRoutes = require(path.join(path.resolve(), "/routes/login/route.js"))
 let empRoutes = require(path.join(path.resolve(), "/routes/employee/route.js"))
@@ -12,8 +14,9 @@ let engineerRoutes = require(path.join(path.resolve(), "/routes/engineer/route.j
 let itRoutes = require(path.join(path.resolve(), "/routes/it/route.js"))
 let labRoutes = require(path.join(path.resolve(), "/routes/lab/route.js"))
 let operatingRoutes = require(path.join(path.resolve(), "/routes/operating/route.js"))
+let reportRoutes = require(path.join(path.resolve(), "/routes/report/route.js"))
+let equipmentRoutes = require(path.join(path.resolve(), "/routes/Equipment/route.js"))
 
-const app = express();
 
 app.use(express.json());
 app.use(userRoutes);
@@ -27,7 +30,10 @@ app.use(engineerRoutes);
 app.use(itRoutes);
 app.use(labRoutes);
 app.use(operatingRoutes);
+app.use(reportRoutes);
+app.use(equipmentRoutes);
 
-app.listen(2072, () => {
+
+app.listen(3000, () => {
   console.log('Server is running on port 2072');
 });

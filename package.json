@@ -4,7 +4,7 @@
   "description": "WAter Analysis Project",
   "main": "app.js",
   "scripts": {
-    "devStart": "nodemon config/app.js"
+    "start": "nodemon config/app.js"
   },
   "repository": {
     "type": "git",

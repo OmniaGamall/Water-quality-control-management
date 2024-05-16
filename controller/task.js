@@ -16,7 +16,6 @@ let addTask = async(req, res) => {
 
 let getTaskByID = async(req, res) =>{
     const taskID = req.params.TaskID;
-    console.log(taskID)
     connection.execute(`select * from task where TaskID = ?`, [taskID], (err, data) =>{
         if (err) {
             console.error('Database error:', err);

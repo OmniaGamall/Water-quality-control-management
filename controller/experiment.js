@@ -2,16 +2,18 @@ const path = require('path');
 const connection = require(path.join(path.resolve(), 'config/db.js'));
 
 
-let addExperiment = async(req, res) => {  
+let addExperiment = async (req, res) => {
     const { name } = req.body;
 
-    connection.execute(`INSERT INTO experiment (name) VALUES (?)`, [name], (err, data) => {
+    connection.execute(`INSERT INTO experiment (name) VALUES (?)`, [name], (err, result) => {
         if (err) {
             console.error('Database error:', err);
             return res.status(500).json({ message: 'Failed', err });
         }
-       
-        res.status(200).json({ message: "Success", data });
+
+        console.log(result.insertId);
+
+        res.status(200).json({ message: "Success", insertId: result.insertId });
     });
 }
 
