@@ -37,11 +37,12 @@ const getTests = (req, res) => {
     if (!TestName || !Description || !ApplicableParameters || !Cost) {
       return res.status(400).json({ error: 'TestName, Description, ApplicableParameters and Cost are required' });
     }
-    connection.query('INSERT INTO test(Cost, TestName, Description_, ApplicableParameters)  VALUES (?, ?, ?)', [Cost, TestName, Description, ApplicableParameters], (err) => {
+    connection.query('INSERT INTO test(Cost, TestName, Description_, ApplicableParameters)  VALUES (?, ?, ?, ?)', [Cost, TestName, Description, ApplicableParameters], (err, result) => {
       if (err) {
         console.error('Error adding test:', err);
         return res.status(500).send('Internal Server Error');
       }
+      console.log(result.insertId);
       res.status(201).json({ message: 'Test added successfully' });
     });
   };

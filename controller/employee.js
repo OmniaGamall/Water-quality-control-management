@@ -28,25 +28,58 @@ const getEmp = (req, res) => {
     res.status(200).json(result[0]);
   });
 };
+/*------------------------------------------------------------------------------------------------------------------------*/
+let chemistController = require(path.join(path.resolve(), "controller/chemist.js"))
+let engController = require(path.join(path.resolve(), "controller/engineer.js"))
+let itController = require(path.join(path.resolve(), "controller/it.js"))
 
-const addEmp = (req, res) => {
+const addEmp = (req, res, next) => {
   const { Fname } = req.body
   const { Lname } = req.body
   const { phoneNum } = req.body
   const { email } = req.body
   const { HireDate } = req.body
   const { RoleID } = req.body
-  if (!username || !emp_password || !EmpID) {
-    return res.status(400).json({ error: 'Username, password, and EmpID are required' });
+  
+  if (!Fname || !Lname || !phoneNum || !email || !HireDate || !RoleID) {
+    return res.status(400).json({ error: 'Missing required fields' });
   }
-  connection.query('INSERT INTO employee (Fname, Lname, phoneNum, email, HireDate, RoleID) VALUES (?, ?, ?)', [Fname, Lname, phoneNum, email, HireDate, RoleID], (err) => {
+  connection.query('INSERT INTO employee (Fname, Lname, phoneNum, email, HireDate, RoleID) VALUES (?, ?, ?, ?, ?, ?)', [Fname, Lname, phoneNum, email, HireDate, RoleID], (err, result) => {
     if (err) {
       console.error('Error adding employee:', err);
       return res.status(500).send('Internal Server Error');
     }
-    res.status(201).json({ message: 'Employee added successfully' });
+    req.body.employeeId = result.insertId;
+    switch (RoleID) {
+    case 4: // Chemist role
+      const { Qualification } = req.body
+      req.body.Qualification = Qualification;
+      return addChemistFromController(req, res);
+    case 5: // Engineer role
+      const { specialization } = req.body
+      req.body.specialization = specialization;
+      return addEngineerFromController(req, res);
+    case 6: 
+      const { skills } = req.body
+      req.body.skills = skills;
+      return addITFromController(req, res);
+    default:
+      return res.status(400).json({ error: 'Unsupported role' });
+  }
+   //res.status(201).json({ message: 'Employee added successfully' });
   });
 };
+
+const addChemistFromController = (req, res) => {
+  chemistController.addChemist(req, res);
+};
+const addEngineerFromController = (req, res) => {
+  engController.addEngineer(req, res);
+};
+const addITFromController = (req, res) => {
+  itController.addIT(req, res);
+};
+/// ************************************************************************************************************************ //
 
 const deleteEmp = (req, res) => {
   const { id } = req.params
@@ -83,5 +116,5 @@ const updateEmp = (req, res) => {
     res.status(200).json({ message: 'Employee updated successfully' });
   });
 };
-module.exports = { getEmployees, getEmp, addEmp, deleteEmp, updateEmp };
+module.exports = { getEmployees, getEmp, addEmp, deleteEmp, updateEmp, addChemistFromController,  addITFromController, addEngineerFromController};
 
