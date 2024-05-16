@@ -4,7 +4,7 @@
   "description": "WAter Analysis Project",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "devStart": "nodemon config/app.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,11 @@
   },
   "homepage": "https://github.com/OmniaGamall/Water-quality-control-management#readme",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.19.2",
     "express-session": "^1.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }

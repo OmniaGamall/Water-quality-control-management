@@ -6,6 +6,7 @@ let empRoutes = require(path.join(path.resolve(), "/routes/employee/route.js"))
 let expRoutes = require( path.join(path.resolve(), "/routes/experiment/route.js"))
 let taskRoutes = require(path.join(path.resolve(), "/routes/task/route.js"))
 let notificationRoutes = require(path.join(path.resolve(), "/routes/notification/route.js"))
+let testRoutes = require(path.join(path.resolve(), "/routes/test/route.js"))
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(empRoutes);
 app.use(expRoutes);
 app.use(taskRoutes);
 app.use(notificationRoutes);
+app.use(testRoutes);
 
 app.listen(2072, () => {
   console.log('Server is running on port 2072');
