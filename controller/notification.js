@@ -65,8 +65,8 @@ const getNotifications = (req, res) => {
   const updateNotification = (req, res) => {
     const { id } = req.params
     const { editedMessageContent } = req.body
-    if (!id || !editedMessageContent) {
-      return res.status(400).json({ error: 'ID and edited message content are required' });
+    if (!editedMessageContent) {
+      return res.status(400).json({ error: 'Edited message content are required' });
     }
     connection.query('UPDATE login_form SET editedMessageContent = ? WHERE NotifiID = ?', [editedMessageContent, id], (err, results) => {
       if (err) {

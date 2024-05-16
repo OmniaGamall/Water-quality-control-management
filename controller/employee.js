@@ -68,8 +68,8 @@ const deleteEmp = (req, res) => {
 const updateEmp = (req, res) => {
   const { id } = req.params
   const { phoneNum } = req.body
-  if (!id || !phoneNum) {
-    return res.status(400).json({ error: 'ID and new phoneNum are required' });
+  if (!phoneNum) {
+    return res.status(400).json({ error: 'New phone number are required' });
   }
   connection.query('UPDATE employee SET phoneNum = ? WHERE EmpID = ?', [phoneNum, id], (err, results) => {
     if (err) {

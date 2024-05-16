@@ -65,8 +65,8 @@ const deleteUser = (req, res) => {
 const updateUser = (req, res) => {
   const { username } = req.params
   const { newUsername } = req.body
-  if (!username || !newUsername) {
-    return res.status(400).json({ error: 'Username and new username are required' });
+  if (!newUsername) {
+    return res.status(400).json({ error: 'New username are required' });
   }
   connection.query('UPDATE login_form SET username = ? WHERE username = ?', [newUsername, username], (err, results) => {
     if (err) {
