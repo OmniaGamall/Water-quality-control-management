@@ -80,6 +80,7 @@ const getNotifications = (req, res) => {
       res.status(200).json({ message: 'Notification updated successfully' });
     });
   };
+  
   module.exports = { getNotifications, getNotification, addNotification, deleteNotification, updateNotification };
   
   
