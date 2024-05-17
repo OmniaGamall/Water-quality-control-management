@@ -1,5 +1,5 @@
-CREATE DATABASE water;
-use water;
+CREATE DATABASE water_analysis_system;
+use water_analysis_system;
 
 ``` User Authentication ```
 
@@ -220,3 +220,46 @@ CREATE TABLE view_report (
   FOREIGN KEY (EmpID) REFERENCES employee(EmpID),
   FOREIGN KEY (RepID) REFERENCES report(RepID)
 );
+
+
+``` Edit constraints of tables```
+
+--- chemist
+ALTER TABLE chemist DROP FOREIGN KEY chemist_ibfk_1;
+
+ALTER TABLE chemist
+ADD CONSTRAINT chemist_ibfk_1
+FOREIGN KEY (ChID) REFERENCES employee (EmpID)
+ON DELETE CASCADE;
+
+--- engineer
+ALTER TABLE engineer DROP FOREIGN KEY engineer_ibfk_1;
+
+ALTER TABLE engineer
+ADD CONSTRAINT engineer_ibfk_1
+FOREIGN KEY (EngID) REFERENCES employee (EmpID)
+ON DELETE CASCADE;
+
+--- it
+ALTER TABLE it DROP FOREIGN KEY it_ibfk_1;
+
+ALTER TABLE it
+ADD CONSTRAINT it_ibfk_1
+FOREIGN KEY (ITID) REFERENCES employee (EmpID)
+ON DELETE CASCADE;
+
+-- lab_technican
+ALTER TABLE lab_technican DROP FOREIGN KEY lab_technican_ibfk_1;
+
+ALTER TABLE lab_technican
+ADD CONSTRAINT lab_technican_ibfk_1
+FOREIGN KEY (LTechID) REFERENCES employee (EmpID)
+ON DELETE CASCADE;
+
+-- operating_technican
+ALTER TABLE operating_technican DROP FOREIGN KEY operating_technican_ibfk_1;
+
+ALTER TABLE operating_technican
+ADD CONSTRAINT operating_technican_ibfk_1
+FOREIGN KEY (OTechID) REFERENCES employee (EmpID)
+ON DELETE CASCADE;
