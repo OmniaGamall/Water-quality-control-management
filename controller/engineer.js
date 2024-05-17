@@ -14,6 +14,21 @@ const addEngineer = (req, res) => {
       }
       res.status(201).json({ message: 'Engineer added successfully' });
     });
-  };
+};
+let getAllEngineers = async (req, res) => {
+    connection.execute(
+      ` SELECT e.EmpID, e.Fname, e.Lname, e.phoneNum, e.email, e.HireDate, e.RoleID, Eng.EngID, Eng.specialization
+        FROM employee e
+        INNER JOIN engineer Eng ON e.EmpID = Eng.EngID `, (err, data) => {
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).json({ message: 'Failed', err });
+        }
 
-  module.exports = { addEngineer };
+        res.status(200).json({ message: 'Success', data });
+    });
+}
+module.exports = {
+   addEngineer,
+   getAllEngineers
+  };

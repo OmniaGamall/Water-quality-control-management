@@ -14,6 +14,22 @@ const addLab = (req, res) => {
       }
       res.status(201).json({ message: 'Lab technician added successfully' });
     });
-  };
+};
 
-  module.exports = { addLab };
+let getAllLabTechs = async (req, res) => {
+  connection.execute(
+    ` SELECT e.EmpID, e.Fname, e.Lname, e.phoneNum, e.email, e.HireDate, e.RoleID, Lab.LTechID, Lab.Equipment_Knowledge 
+      FROM employee e
+      INNER JOIN lab_technician Lab ON e.EmpID = Lab.LTechID `, (err, data) => {
+      if (err) {
+          console.error('Database error:', err);
+          return res.status(500).json({ message: 'Failed', err });
+      }
+
+      res.status(200).json({ message: 'Success', data });
+  });
+}
+module.exports = { 
+  addLab,
+  getAllLabTechs
+};
