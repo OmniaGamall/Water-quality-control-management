@@ -12,11 +12,7 @@ const addLab = (req, res) => {
         console.error('Error adding lab technician:', err);
         return res.status(500).send('Internal Server Error');
       }
-<<<<<<< HEAD
-      res.status(201).json({ message: ' Lab technician added successfully' });
-=======
       res.status(201).json({ message: 'lab technician added successfully' });
->>>>>>> 2f65ff7a5fb439310ea3342c8bd3d91756d5b238
     });
 };
 
