@@ -1,17 +1,34 @@
 const path = require('path');
 const connection = require(path.join(path.resolve(), 'config/db.js'));
 
-let addTask = async(req, res) => {  
-    const {  Description_, Status_, AssignedTo } = req.body;
+let addTask = async (req, res) => {  
+    const { ChID, Description_, Status_, AssignedTo } = req.body;
 
-    connection.execute(`INSERT INTO task (Description_, Status_, AssignedTo) VALUES (?, ?, ?)`, [Description_, Status_, AssignedTo], (err, data) => {
-        if (err) {
-            console.error('Database error:', err);
-            return res.status(500).json({ message: 'Failed', err });
+    connection.execute(
+        `INSERT INTO task (Description_, Status_, AssignedTo) VALUES (?, ?, ?)`,
+        [Description_, Status_, AssignedTo],
+        (err, taskResult) => {
+            if (err) {
+                console.error('Database error:', err);
+                return res.status(500).json({ message: 'Failed', err });
+            }
+
+            const taskId = taskResult.insertId;
+
+            connection.execute(
+                `INSERT INTO create_task (ChID, TaskID) VALUES (?, ?)`,
+                [ChID, taskId],
+                (err, createTaskResult) => {
+                    if (err) {
+                        console.error('Database error:', err);
+                        return res.status(500).json({ message: 'Failed', err });
+                    }
+
+                    res.status(200).json({ message: "Success", taskId });
+                }
+            );
         }
-       
-        res.status(200).json({ message: "Success", data });
-    });
+    );
 }
 
 let getTaskByID = async(req, res) =>{

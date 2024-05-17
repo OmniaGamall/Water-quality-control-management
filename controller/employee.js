@@ -28,7 +28,9 @@ const getEmp = (req, res) => {
     res.status(200).json(result[0]);
   });
 };
+
 /*------------------------------------------------------------------------------------------------------------------------*/
+
 let chemistController = require(path.join(path.resolve(), "controller/chemist.js"))
 let engController = require(path.join(path.resolve(), "controller/engineer.js"))
 let itController = require(path.join(path.resolve(), "controller/it.js"))
@@ -97,6 +99,7 @@ const addLab = (req, res) => {
 const addOperating = (req, res) => {
   operatingController.addOperating(req, res);
 };
+
 /// ************************************************************************************************************************ //
 
 const deleteEmp = (req, res) => {
@@ -134,6 +137,7 @@ const updateEmp = (req, res) => {
     res.status(200).json({ message: 'Employee updated successfully' });
   });
 };
+
 module.exports = { 
   getEmployees, 
   getEmp, 
