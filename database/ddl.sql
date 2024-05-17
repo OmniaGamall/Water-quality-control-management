@@ -65,14 +65,14 @@ CREATE TABLE it (
   FOREIGN KEY (ITID) REFERENCES employee (EmpID)
 );
 
-CREATE TABLE lab_technican (
+CREATE TABLE lab_technician (
   LTechID int(11),
   Equipment_Knowledge varchar(50) DEFAULT NULL,
   PRIMARY KEY (LTechID),
   FOREIGN KEY (LTechID) REFERENCES employee (EmpID)
 );
 
-CREATE TABLE operating_technican (
+CREATE TABLE operating_technician (
   OTechID int(11),
   Certification varchar(50),
   PRIMARY KEY (OTechID),
@@ -248,18 +248,18 @@ ADD CONSTRAINT it_ibfk_1
 FOREIGN KEY (ITID) REFERENCES employee (EmpID)
 ON DELETE CASCADE;
 
--- lab_technican
-ALTER TABLE lab_technican DROP FOREIGN KEY lab_technican_ibfk_1;
+-- lab_technician
+ALTER TABLE lab_technician DROP FOREIGN KEY lab_technician_ibfk_1;
 
-ALTER TABLE lab_technican
-ADD CONSTRAINT lab_technican_ibfk_1
+ALTER TABLE lab_technician
+ADD CONSTRAINT lab_technician_ibfk_1
 FOREIGN KEY (LTechID) REFERENCES employee (EmpID)
 ON DELETE CASCADE;
 
--- operating_technican
-ALTER TABLE operating_technican DROP FOREIGN KEY operating_technican_ibfk_1;
+-- operating_technician
+ALTER TABLE operating_technician DROP FOREIGN KEY operating_technician_ibfk_1;
 
-ALTER TABLE operating_technican
-ADD CONSTRAINT operating_technican_ibfk_1
+ALTER TABLE operating_technician
+ADD CONSTRAINT operating_technician_ibfk_1
 FOREIGN KEY (OTechID) REFERENCES employee (EmpID)
 ON DELETE CASCADE;

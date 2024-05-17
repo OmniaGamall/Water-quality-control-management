@@ -7,12 +7,12 @@ const addLab = (req, res) => {
     if (!Equipment_Knowledge) {
       return res.status(400).json({ error: 'Equipment knowledge is required' });
     }
-    connection.query('INSERT INTO lab_technican (Equipment_Knowledge, LTechID) VALUES (?, ?)', [Equipment_Knowledge, employeeId], (err) => {
+    connection.query('INSERT INTO lab_technician (Equipment_Knowledge, LTechID) VALUES (?, ?)', [Equipment_Knowledge, employeeId], (err) => {
       if (err) {
-        console.error('Error adding lab technican:', err);
+        console.error('Error adding lab technician:', err);
         return res.status(500).send('Internal Server Error');
       }
-      res.status(201).json({ message: ' Lab technican added successfully' });
+      res.status(201).json({ message: ' Lab technician added successfully' });
     });
   };
 

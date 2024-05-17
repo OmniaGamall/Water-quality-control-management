@@ -1,8 +1,8 @@
 -- roles
 INSERT INTO roles (RoleName) VALUES 
 ('Administrator'),
-('Operating Technican'),
-('Lab Technican'),
+('Operating Technician'),
+('Lab Technician'),
 ('Chemist'),
 ('Engineer'),
 ('IT Specialist');
@@ -71,13 +71,13 @@ INSERT INTO engineer (EngID, specialization) VALUES
 INSERT INTO it (ITID, skills) VALUES
 (6, 'Network Administration');
 
--- lab_technican
-INSERT INTO lab_technican (LTechID, Equipment_Knowledge) VALUES
+-- lab_technician
+INSERT INTO lab_technician (LTechID, Equipment_Knowledge) VALUES
 (7, 'Electron Microscopy'),
 (11, 'Gas Chromatography');
 
--- operating_technican
-INSERT INTO operating_technican (OTechID, Certification) VALUES
+-- operating_technician
+INSERT INTO operating_technician (OTechID, Certification) VALUES
 (8, 'OSHA Certified');
 
 -- experiment

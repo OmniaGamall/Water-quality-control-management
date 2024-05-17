@@ -1,7 +1,7 @@
 {
   "name": "water",
   "version": "1.0.0",
-  "description": "WAter Analysis Project",
+  "description": "Water Analysis Project",
   "main": "app.js",
   "scripts": {
     "start": "node config/app.js",

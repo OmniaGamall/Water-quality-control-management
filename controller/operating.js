@@ -7,12 +7,12 @@ const addOperating = (req, res) => {
     if (!Certification) {
       return res.status(400).json({ error: 'Certification is required' });
     }
-    connection.query('INSERT INTO operating_technican (Certification, OTechID) VALUES (?, ?)', [Certification, employeeId], (err) => {
+    connection.query('INSERT INTO operating_technician (Certification, OTechID) VALUES (?, ?)', [Certification, employeeId], (err) => {
       if (err) {
-        console.error('Error adding operating technican:', err);
+        console.error('Error adding operating technician:', err);
         return res.status(500).send('Internal Server Error');
       }
-      res.status(201).json({ message: 'Operating technican added successfully' });
+      res.status(201).json({ message: 'Operating technician added successfully' });
     });
   };
 
