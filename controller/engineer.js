@@ -28,7 +28,27 @@ let getAllEngineers = async (req, res) => {
         res.status(200).json({ message: 'Success', data });
     });
 }
+
+let getEngineerByID = async (req, res) => {
+  const { EngID } = req.params;
+  connection.execute(
+     `SELECT e.EmpID, e.Fname, e.Lname, e.phoneNum, e.email, e.HireDate, e.RoleID, eng.EngID, eng.specialization
+      FROM employee e
+      INNER JOIN engineer eng ON e.EmpID = eng.EngID
+      WHERE eng.EngID = ?`, [EngID], (err, data) => {
+      if (err) {
+          console.error('Database error:', err);
+          return res.status(500).json({ message: 'Error fetching engineer', error: err });
+      }
+      if (data && data.length > 0) {
+          res.status(200).json({ message: "Success", data: data[0] });
+      } else {
+          res.status(404).json({ message: "Engineer not found" });
+      }
+  });
+}
 module.exports = {
    addEngineer,
-   getAllEngineers
+   getAllEngineers,
+   getEngineerByID
   };

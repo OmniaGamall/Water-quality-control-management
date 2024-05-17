@@ -28,7 +28,28 @@ let getAllOperatingTechs = async (req, res) => {
       res.status(200).json({ message: 'Success', data });
   });
 }
+
+let getOperatingTechnicianByID = async (req, res) => {
+  const { OTechID } = req.params;
+  connection.execute(
+    `SELECT e.EmpID, e.Fname, e.Lname, e.phoneNum, e.email, e.HireDate, e.RoleID, ot.OTechID, ot.Certification
+      FROM employee e
+      INNER JOIN operating_technician ot ON e.EmpID = ot.OTechID
+      WHERE ot.OTechID = ?`, [OTechID], (err, data) => {
+      if (err) {
+          console.error('Database error:', err);
+          return res.status(500).json({ message: 'Error fetching operating technician', error: err });
+      }
+      if (data && data.length > 0) {
+          res.status(200).json({ message: "Success", data: data[0] });
+      } else {
+          res.status(404).json({ message: "Operating technician not found" });
+      }
+  });
+}
+
 module.exports = { 
   addOperating,
-  getAllOperatingTechs 
+  getAllOperatingTechs,
+  getOperatingTechnicianByID
 };

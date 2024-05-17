@@ -5,4 +5,5 @@ const operatingController = require(path.join(path.resolve(), "controller/operat
 
 app.post('/addOperating', operatingController.addOperating);
 app.get('/getAllOperatingTechs', operatingController.getAllOperatingTechs)
+app.get('/getOperatingTechnicianByID/:OTechID', operatingController.getOperatingTechnicianByID);
 module.exports = app;
