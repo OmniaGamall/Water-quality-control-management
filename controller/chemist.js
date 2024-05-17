@@ -16,4 +16,21 @@ const addChemist = (req, res) => {
     });
   };
 
-  module.exports = { addChemist };
+let getAllChemists = async (req, res) => {
+    connection.execute(
+      ` SELECT e.EmpID, e.Fname, e.Lname, e.phoneNum, e.email, e.HireDate, e.RoleID, c.ChID, c.Qualification
+        FROM employee e
+        INNER JOIN chemist c ON e.EmpID = c.ChID `, (err, data) => {
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).json({ message: 'Failed', err });
+        }
+
+        res.status(200).json({ message: 'Success', data });
+    });
+}
+
+module.exports = { 
+  addChemist,
+  getAllChemists
+};

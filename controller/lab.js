@@ -7,13 +7,29 @@ const addLab = (req, res) => {
     if (!Equipment_Knowledge) {
       return res.status(400).json({ error: 'Equipment knowledge is required' });
     }
-    connection.query('INSERT INTO lab_technican (Equipment_Knowledge, LTechID) VALUES (?, ?)', [Equipment_Knowledge, employeeId], (err) => {
+    connection.query('INSERT INTO lab_technician (Equipment_Knowledge, LTechID) VALUES (?, ?)', [Equipment_Knowledge, employeeId], (err) => {
       if (err) {
-        console.error('Error adding lab technican:', err);
+        console.error('Error adding lab technician:', err);
         return res.status(500).send('Internal Server Error');
       }
-      res.status(201).json({ message: ' Lab technican added successfully' });
+      res.status(201).json({ message: 'lab technician added successfully' });
     });
-  };
+};
 
-  module.exports = { addLab };
+let getAllLabTechs = async (req, res) => {
+  connection.execute(
+    ` SELECT e.EmpID, e.Fname, e.Lname, e.phoneNum, e.email, e.HireDate, e.RoleID, Lab.LTechID, Lab.Equipment_Knowledge 
+      FROM employee e
+      INNER JOIN lab_technician Lab ON e.EmpID = Lab.LTechID `, (err, data) => {
+      if (err) {
+          console.error('Database error:', err);
+          return res.status(500).json({ message: 'Failed', err });
+      }
+
+      res.status(200).json({ message: 'Success', data });
+  });
+}
+module.exports = { 
+  addLab,
+  getAllLabTechs
+};

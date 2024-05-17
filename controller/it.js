@@ -14,6 +14,22 @@ const addIT = (req, res) => {
       }
       res.status(201).json({ message: 'IT Specialist added successfully' });
     });
-  };
+};
 
-  module.exports = { addIT };
+let getAllITS = async (req, res) => {
+  connection.execute(
+    ` SELECT e.EmpID, e.Fname, e.Lname, e.phoneNum, e.email, e.HireDate, e.RoleID, IT.ITID, IT.skills
+      FROM employee e
+      INNER JOIN it IT ON e.EmpID = IT.ITID `, (err, data) => {
+      if (err) {
+          console.error('Database error:', err);
+          return res.status(500).json({ message: 'Failed', err });
+      }
+
+      res.status(200).json({ message: 'Success', data });
+  });
+}
+module.exports = { 
+    addIT,
+    getAllITS 
+  };
