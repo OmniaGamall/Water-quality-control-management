@@ -29,7 +29,27 @@ let getAllITS = async (req, res) => {
       res.status(200).json({ message: 'Success', data });
   });
 }
+
+let getITByID = async (req, res) => {
+  const { ITID } = req.params;
+  connection.execute(
+     `SELECT e.EmpID, e.Fname, e.Lname, e.phoneNum, e.email, e.HireDate, e.RoleID, it.ITID, it.skills
+      FROM employee e
+      INNER JOIN it ON e.EmpID = it.ITID
+      WHERE it.ITID = ?`, [ITID], (err, data) => {
+      if (err) {
+          console.error('Database error:', err);
+          return res.status(500).json({ message: 'Error fetching IT professional', error: err });
+      }
+      if (data && data.length > 0) {
+          res.status(200).json({ message: "Success", data: data[0] });
+      } else {
+          res.status(404).json({ message: "IT professional not found" });
+      }
+  });
+}
 module.exports = { 
     addIT,
-    getAllITS 
+    getAllITS,
+    getITByID
   };

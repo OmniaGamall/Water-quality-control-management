@@ -30,7 +30,28 @@ let getAllChemists = async (req, res) => {
     });
 }
 
+let getChemistByID = async (req, res) => {
+  const chimID = req.params.ChID;
+  connection.execute(
+    ` SELECT e.EmpID, e.Fname, e.Lname, e.phoneNum, e.email, e.HireDate, e.RoleID, c.ChID, c.Qualification
+      FROM employee e
+      INNER JOIN chemist c ON e.EmpID = c.ChID
+      WHERE c.ChID = ? `, [chimID], (err, data) => {
+      if (err) {
+          console.error('Database error:', err);
+          return res.status(500).json({ message: 'Error fetching chemist', error: err });
+      }
+      if (data && data.length > 0) {
+          res.status(200).json({ message: "Success", data: data[0] });
+      } else {
+          res.status(404).json({ message: "Chemist not found" });
+      }
+  });
+}
+
+
 module.exports = { 
   addChemist,
-  getAllChemists
+  getAllChemists,
+  getChemistByID
 };

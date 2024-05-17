@@ -29,7 +29,29 @@ let getAllLabTechs = async (req, res) => {
       res.status(200).json({ message: 'Success', data });
   });
 }
+
+let getLabTechnicianByID = async (req, res) => {
+  const { LTechID } = req.params;
+  connection.execute(`
+      SELECT e.EmpID, e.Fname, e.Lname, e.phoneNum, e.email, e.HireDate, e.RoleID, lt.LTechID, lt.Equipment_Knowledge
+      FROM employee e
+      INNER JOIN lab_technician lt ON e.EmpID = lt.LTechID
+      WHERE lt.LTechID = ?
+  `, [LTechID], (err, data) => {
+      if (err) {
+          console.error('Database error:', err);
+          return res.status(500).json({ message: 'Error fetching lab technician', error: err });
+      }
+      if (data && data.length > 0) {
+          res.status(200).json({ message: "Success", data: data[0] });
+      } else {
+          res.status(404).json({ message: "Lab technician not found" });
+      }
+  });
+}
+
 module.exports = { 
   addLab,
-  getAllLabTechs
+  getAllLabTechs,
+  getLabTechnicianByID
 };
