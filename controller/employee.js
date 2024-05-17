@@ -107,7 +107,7 @@ const deleteEmp = (req, res) => {
   if (!id) {
     return res.status(400).json({ error: 'Employee ID is required' });
   }
-  connection.query('DELETE FROM employee WHERE EmpID = ?', [id], (err) => {
+  connection.query('DELETE FROM employee WHERE EmpID = ?', [id], (err, result) => {
     if (err) {
       console.error('Error deleting employee:', err);
       return res.status(500).send('Internal Server Error');
