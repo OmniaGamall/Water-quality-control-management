@@ -25,6 +25,40 @@ let getAllExperiments = async(req, res) =>{
     })
 }
 
+const getExperimentsForToday = (req, res, reportData) => {
+    const date = req.body.date
+    if (!date) {
+      return res.status(400).json({ error: 'Date is required' });
+    }
+    const query = `
+        SELECT 
+            e.Inf,
+            e.Eff,
+            e.Blank As 'Limit',
+            t.TestName As 'Test Name',
+            t.Duration As 'Test Duration'
+        FROM 
+            experiment e
+        JOIN 
+            test t ON e.TestID = t.TestID
+        WHERE 
+            e.date = ?;
+    `;
+    connection.query(query, [date], (err, experimentResults) => {
+        if (err) {
+            console.error('Error fetching experiment data:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+        if (experimentResults.length === 0) {
+            return res.status(404).json({ error: 'Experiments not found' });
+        }
+        const responseData = {
+            report: reportData,
+            experiments: experimentResults
+        };
+        res.status(200).json(responseData);
+    });
+  };
 let deleteExperimentByID = async (req, res) => {
     const ExpID = req.params.ExpID;
 
@@ -45,5 +79,6 @@ let deleteExperimentByID = async (req, res) => {
 module.exports = {
     makeExperiment,
     getAllExperiments,
-    deleteExperimentByID
+    deleteExperimentByID,
+    getExperimentsForToday
 }

@@ -1,5 +1,6 @@
 const { Module } = require('module');
 const path = require('path');
+const { getAllExperiments } = require('./experiment');
 const connection = require(path.join(path.resolve(), 'config/db.js'));
 
 let addReport = async (req, res) => {
@@ -17,6 +18,7 @@ let addReport = async (req, res) => {
     });
 }
 
+let experimentController = require(path.join(path.resolve(), "controller/experiment.js"))
 //** always id == 1 meaning we have one report edit in it every day (we will edit this feature soon)
 const getReportByID = (req, res) => { 
     const { id } = req.params;
@@ -43,16 +45,22 @@ const getReportByID = (req, res) => {
       WHERE 
         r.RepID = ?`;
         
-    connection.query(query, [id], (err, result) => {
+    connection.query(query, [id], (err, reportResult) => {
       if (err) {
         console.error('Error fetching report:', err);
         return res.status(500).send('Internal Server Error');
       }
-      if (result.length === 0) {
+      if (reportResult.length === 0) {
         return res.status(404).json({ error: 'Report not found' });
       }
-      res.status(200).json(result[0]);
+      const date = reportResult[0].Date_;
+      req.body.date = date;
+      getExperimentsForToday(req, res, reportResult[0]);
     });
+};
+
+const getExperimentsForToday = (req, res, reportData) => {
+    experimentController.getExperimentsForToday(req, res, reportData);
 };
 
 let getAllReports = async(req, res) =>{
@@ -114,5 +122,6 @@ module.exports = {
     getReportByID,
     getAllReports,
     deleteReportByID,
-    updateReport
+    updateReport, 
+    getExperimentsForToday
 }
