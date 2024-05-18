@@ -121,8 +121,7 @@ CREATE TABLE task (
   TaskID INT PRIMARY KEY AUTO_INCREMENT,
   Description_ TEXT NOT NULL,
   Status_ VARCHAR(50) NOT NULL,
-  AssignedTo INT NOT NULL,
-  FOREIGN KEY (AssignedTo) REFERENCES employee(EmpID)
+  current_day DATE DEFAULT (CURRENT_DATE);
 );
 
 CREATE TABLE notification (
@@ -131,7 +130,6 @@ CREATE TABLE notification (
   Receiver INT NOT NULL,
   MessageContent TEXT NOT NULL,
   FOREIGN KEY (Sender) REFERENCES employee(EmpID),
-  FOREIGN KEY (Receiver) REFERENCES employee(EmpID)
 );
 
 
@@ -180,28 +178,19 @@ CREATE TABLE experiment_from_test (
 );
 
 CREATE TABLE create_task (
-  ChID INT,
+  EmpID INT,
   TaskID INT,
-  PRIMARY KEY (ChID, TaskID),
-  FOREIGN KEY (ChID) REFERENCES chemist(ChID),
+  PRIMARY KEY (EmpID, TaskID),
+  FOREIGN KEY (EmpID) REFERENCES employee(EmpID),
   FOREIGN KEY (TaskID) REFERENCES task(TaskID)
 );
 
-CREATE TABLE modify_task (
-  EngID INT,
-  TaskID INT,
-  DueDate DATE NOT NULL,
-  PRIMARY KEY (EngID, TaskID),
-  FOREIGN KEY (EngID) REFERENCES engineer(EngID),
-  FOREIGN KEY (TaskID) REFERENCES task(TaskID)
-);
-
-CREATE TABLE send_notification (
-  EngID INT NOT NULL,
-  NotifiID INT NOT NULL,
-  PRIMARY KEY (EngID, NotifiID),
-  FOREIGN KEY (EngID) REFERENCES Engineer(EngID),
-  FOREIGN KEY (NotifiID) REFERENCES Notification(NotifiID)
+CREATE TABLE add_Note (
+    RepID INT,
+    NotifiID INT,
+    PRIMARY KEY (RepID, NotifiID),
+    FOREIGN KEY (RepID) REFERENCES report(RepID),
+    FOREIGN KEY (NotifiID) REFERENCES notification(NotifiID)
 );
 
 -- show_notification -> done
@@ -264,6 +253,7 @@ ADD CONSTRAINT operating_technician_ibfk_1
 FOREIGN KEY (OTechID) REFERENCES employee (EmpID)
 ON DELETE CASCADE;
 
+
 ``` Edit experiment table based on correct requirements ```
 ALTER TABLE experiment DROP COLUMN name;
 ALTER TABLE experiment ADD Inf INT;
@@ -320,3 +310,4 @@ CREATE TABLE experiment_savesas_report (
   FOREIGN KEY (ExpID) REFERENCES experiment (ExpID),
   FOREIGN KEY (RepID) REFERENCES report (RepID)
 );
+
