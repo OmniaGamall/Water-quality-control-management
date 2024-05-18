@@ -87,22 +87,45 @@ let deleteTaskByID = async (req, res) => {
 };
 
 let updateTaskByID = async (req, res) => {
+    const ID = req.params.EmpID;
     const taskId = req.params.TaskID;
-    const { Status_ } = req.body;
+    const { ...updateFields } = req.body;
 
-    connection.execute(`UPDATE task SET Status_ = ? WHERE TaskID = ?`, [Status_,  taskId], (err, result) => {
-            if (err) {
-                console.error('Database error:', err);
-                return res.status(500).json({ message: 'Failed to update task', error: err });
-            }
+    const allowedFields = ['Description_', 'Status_'];
+    const fields = Object.keys(updateFields).filter(field => allowedFields.includes(field));
+    const values = fields.map(field => updateFields[field]);
 
-            if (result.affectedRows > 0) {
-                res.status(200).json({ message: 'Task updated successfully' });
-            } else {
-                res.status(404).json({ message: 'Task not found' });
-            }
-        });
+    if (fields.length === 0) {
+        return res.status(400).json({ message: 'No valid fields to update' });
+    }
+
+    const setClause = fields.map(field => `${field} = ?`).join(', ');
+
+    const query = `UPDATE task SET ${setClause} WHERE TaskID = ?`;
+
+    connection.execute(`SELECT * FROM create_task WHERE EmpID = ? AND TaskID = ?`, [ID, taskId], (err, data) => {
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).json({ message: 'Failed to verify task creator', error: err });
+        }
+        
+        if (data.length > 0) {
+            values.push(taskId);
+
+            connection.execute(query, values, (err, result) => {
+                if (err) {
+                    console.error('Database error:', err);
+                    return res.status(500).json({ message: 'Failed to update task', error: err });
+                }
+
+                res.status(200).json({ message: 'Success', affectedRows: result.affectedRows });
+            });
+        } else {
+            res.status(403).json({ message: 'You are not authorized to update this task' });
+        }
+    });
 };
+
 
 module.exports = {
     addTask,
