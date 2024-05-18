@@ -8,6 +8,7 @@ app.get("/getTaskByID/:TaskID", taskController.getTaskByID)
 
 app.get("/getAllTasks", taskController.getAllTasks)
 app.delete("/deleteTaskByID/:TaskID/:EmpID", taskController.deleteTaskByID)
-app.put("/updateTaskByID/:TaskID/:EmpID", taskController.updateTaskByID)
+app.put("/updateTaskStatusByID/:TaskID/:EmpID", taskController.updateTaskStatusByID)
+app.put("/editTaskByID/:TaskID/:EmpID", taskController.editTaskByID)
 
 module.exports = app

@@ -3,11 +3,11 @@ const connection = require(path.join(path.resolve(), 'config/db.js'));
 
 let addTask = async (req, res) => {  
     const ID = req.params.EmpID;
-    const {Description_, Status_ } = req.body;
+    const {name, Description_} = req.body;
 
     connection.execute(
-        `INSERT INTO task (Description_, Status_) VALUES (?, ?)`,
-        [Description_, Status_],
+        `INSERT INTO task (name, Description_) VALUES (?, ?)`,
+        [name, Description_],
         (err, taskResult) => {
             if (err) {
                 console.error('Database error:', err);
@@ -86,12 +86,12 @@ let deleteTaskByID = async (req, res) => {
     });
 };
 
-let updateTaskByID = async (req, res) => {
+let editTaskByID = async (req, res) => {
     const ID = req.params.EmpID;
     const taskId = req.params.TaskID;
     const { ...updateFields } = req.body;
 
-    const allowedFields = ['Description_', 'Status_'];
+    const allowedFields = ['name','Description_'];
     const fields = Object.keys(updateFields).filter(field => allowedFields.includes(field));
     const values = fields.map(field => updateFields[field]);
 
@@ -126,11 +126,43 @@ let updateTaskByID = async (req, res) => {
     });
 };
 
+let updateTaskStatusByID = async (req, res) => {
+    const ID = req.params.EmpID;
+    const taskId = req.params.TaskID;
+    const { Status_ } = req.body;
+
+    if (!Status_) {
+        return res.status(400).json({ message: 'Status_ is required for updating the task status' });
+    }
+
+    const query = `UPDATE task SET Status_ = ? WHERE TaskID = ?`;
+
+    connection.execute(`SELECT * FROM create_task WHERE EmpID = ? AND TaskID = ?`, [ID, taskId], (err, data) => {
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).json({ message: 'Failed to verify task creator', error: err });
+        }
+        
+        if (data.length > 0) {
+            connection.execute(query, [Status_, taskId], (err, result) => {
+                if (err) {
+                    console.error('Database error:', err);
+                    return res.status(500).json({ message: 'Failed to update task status', error: err });
+                }
+
+                res.status(200).json({ message: 'Task status updated successfully', affectedRows: result.affectedRows });
+            });
+        } else {
+            res.status(403).json({ message: 'You are not authorized to update this task' });
+        }
+    });
+};
 
 module.exports = {
     addTask,
     getTaskByID,
     getAllTasks,
     deleteTaskByID,
-    updateTaskByID
+    updateTaskStatusByID,
+    editTaskByID
 }
