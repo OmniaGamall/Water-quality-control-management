@@ -90,8 +90,8 @@ CREATE TABLE experiment (
 
 CREATE TABLE report (
   RepID int(11) AUTO_INCREMENT,
-  Title varchar(255) NOT NULL,
-  Author varchar(255) NOT NULL,
+  Title varchar(255) NOT NULL, -- delete
+  Author varchar(255) NOT NULL, -- change to Ch_ID (fk)
   Flow float NOT NULL,
   Temp float NOT NULL,
   TotalDuration int(11) NOT NULL,
@@ -263,3 +263,60 @@ ALTER TABLE operating_technician
 ADD CONSTRAINT operating_technician_ibfk_1
 FOREIGN KEY (OTechID) REFERENCES employee (EmpID)
 ON DELETE CASCADE;
+
+``` Edit experiment table based on correct requirements ```
+ALTER TABLE experiment DROP COLUMN name;
+ALTER TABLE experiment ADD Inf INT;
+ALTER TABLE experiment ADD Eff INT;
+ALTER TABLE experiment ADD Blank INT;
+ALTER TABLE experiment ADD TestID INT;
+ALTER TABLE experiment ADD FOREIGN KEY (TestID) REFERENCES test (TestID);
+
+``` Delete and Drop some tables make conflicts ```
+DROP Table experiment_from_test;
+DROP TABLE experiment_have_equipment;
+DELETE FROM chemist_make_exp;
+DELETE FROM experiment_savesas_report;
+DELETE FROM it_control_exp;
+DELETE FROM experiment;
+
+``` Edit test table based on correct requirements ```
+DELETE FROM test;
+ALTER TABLE test DROP COLUMN Description_;
+ALTER TABLE test DROP COLUMN ApplicableParameters;
+ALTER TABLE test DROP COLUMN Cost;
+ALTER TABLE test ADD Instructions TEXT;
+ALTER TABLE test ADD Duration INT;
+ALTER TABLE test ADD Temp INT;
+
+``` Delete not necessary data from equipment table ```
+DELETE FROM equipment WHERE EquID IN (1,2,3,4);
+
+-- New table -> test_have_equipment
+CREATE TABLE test_have_equipment (
+  TestID INT NOT NULL,
+  EquID INT NOT NULL,
+  PRIMARY KEY (TestID, EquID),
+  FOREIGN KEY (TestID) REFERENCES test (TestID),
+  FOREIGN KEY (EquID) REFERENCES equipment(EquID)
+);
+``` Updates based on reports requirements ```
+-- report table
+ALTER TABLE report DROP COLUMN  Author;
+ALTER TABLE report DROP COLUMN  Title;
+ALTER TABLE report ADD ChID INT;
+ALTER TABLE report ADD FOREIGN KEY (ChID) REFERENCES chemist (ChID);
+ALTER TABLE report ADD Efficiency INT;
+ALTER TABLE report ADD RCI2 INT;
+DELETE FROM view_report;
+DELETE FROM report;
+
+--- experiment and report relation
+DROP TABLE experiment_savesas_report;
+CREATE TABLE experiment_savesas_report (
+  ExpID INT NOT NULL,
+  RepID INT NOT NULL,
+  PRIMARY KEY (ExpID, RepID),
+  FOREIGN KEY (ExpID) REFERENCES experiment (ExpID),
+  FOREIGN KEY (RepID) REFERENCES report (RepID)
+);
