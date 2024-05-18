@@ -290,7 +290,7 @@ ALTER TABLE test ADD Duration INT;
 ALTER TABLE test ADD Temp INT;
 
 ``` Delete not necessary data from equipment table ```
-DELETE FROM `equipment` WHERE `EquID` IN (1,2,3,4);
+DELETE FROM equipment WHERE EquID IN (1,2,3,4);
 
 -- New table -> test_have_equipment
 CREATE TABLE test_have_equipment (
