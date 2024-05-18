@@ -311,3 +311,52 @@ CREATE TABLE experiment_savesas_report (
   FOREIGN KEY (RepID) REFERENCES report (RepID)
 );
 
+
+--- edit task table
+DROP TABLE modify_task;
+
+ALTER TABLE task DROP FOREIGN KEY task_ibfk_1;
+ALTER TABLE task DROP COLUMN AssignedTo;
+
+ALTER TABLE task 
+ADD COLUMN current_day DATE DEFAULT (CURRENT_DATE);
+
+ALTER TABLE task
+MODIFY COLUMN Status_ VARCHAR(50) NOT NULL DEFAULT 'not completed';
+
+--- Edit create_task table
+DROP TABLE create_task;
+
+CREATE TABLE create_task (
+  EmpID INT,
+  TaskID INT,
+  PRIMARY KEY (EmpID, TaskID),
+  FOREIGN KEY (EmpID) REFERENCES employee(EmpID),
+  FOREIGN KEY (TaskID) REFERENCES task(TaskID)
+);
+
+ALTER TABLE create_task
+DROP FOREIGN KEY create_task_ibfk_2;
+
+ALTER TABLE create_task
+ADD CONSTRAINT create_task_ibfk_2
+FOREIGN KEY (TaskID)
+REFERENCES task(TaskID)
+ON DELETE CASCADE;
+
+
+--- Edit notification table
+ALTER TABLE notification DROP FOREIGN KEY notification_ibfk_2;
+ALTER TABLE notification DROP COLUMN Receiver;
+
+--- Edit the send_notification table and create a new table (add_Note)
+DROP TABLE send_notification;
+
+CREATE TABLE add_Note (
+    RepID INT,
+    NotifiID INT,
+    PRIMARY KEY (RepID, NotifiID),
+    FOREIGN KEY (RepID) REFERENCES report(RepID),
+    FOREIGN KEY (NotifiID) REFERENCES notification(NotifiID)
+);
+
