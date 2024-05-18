@@ -43,7 +43,7 @@ let deleteExperimentByID = async (req, res) => {
 };
 
 module.exports = {
-    addExperiment,
+    makeExperiment,
     getAllExperiments,
     deleteExperimentByID
 }
