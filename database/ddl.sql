@@ -360,3 +360,6 @@ CREATE TABLE add_Note (
     FOREIGN KEY (NotifiID) REFERENCES notification(NotifiID)
 );
 
+--- edit on task table
+ALTER TABLE task
+ADD COLUMN name VARCHAR(50) NOT NULL;
