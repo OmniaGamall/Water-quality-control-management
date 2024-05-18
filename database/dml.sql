@@ -231,3 +231,98 @@ VALUES
 (1, 3),
 (9, 4);
 
+--- test 
+INSERT INTO test (TestName, Instructions, Duration, Temp)
+VALUES ("BOD", "
+١- نضع كمية مناسبة من العينات في الزجاجات.
+٢- نضع بكل زجاجة قرص معدني.
+٣- وضع زجاجات BOD في مكانها المناسب في الجهاز مع وضع قرص من هيدروكسيد الصوديوم (NaoH) في غطاء الزجاجة.
+٤- نقوم بضبط درجة الحرارة ونقوم بتوصيلها بالمؤشر الزئبقي.
+٥- ضبط المانوميتر على صفر بعد ٣٠/ ٤٠ دقيقة", 
+40, 20);
+
+INSERT INTO test (TestName, Instructions, Duration, Temp)
+VALUES (
+    "Sulfide",
+    "١- نضع (0.2 ml) أو أربع قطرات من الزنك اسيتات و (0.1 ml) أو قطرتين من هيدروكسيد الصوديوم (NaOH) مع (200 ml) من العينة.
+     ٢- نرج جيدا حتى يتكون راسب ثم نقوم بترشيحه على ورقة الترشيح.
+     ٣- نجمع الراسب المتكون على ورقة الترشيح ونذوبه في (200 ml) من الماء المقطر.
+     ٤- نضيف (10 ml) من اليود (Iodine) و (2 ml) حمض هيدروكلوريك (HCl).
+     ٥- نعايره مع محلول صوديوم ثيوسلفات (Na2S2O3) حتى يتكون لون أصفر باهت.
+     ٦- نضيف قطرتين من النشا ككاشف ونكمل المعايرة حتى يصبح اللون شفاف (عديم اللون).
+     
+     Mgs2-/L={(A*B) - (C*D) * 160000/ML Sample}
+     A=10 حجم المحلول
+     B=0.025N تركيز محلول اليود
+     C=? حجم محلول صوديوم ثيوسلفات
+     D=0.025N تركيز محلول الصوديوم ثيوسلفات",
+    30, 25);
+
+
+INSERT INTO test (TestName, Instructions, Duration, Temp)
+VALUES (
+    'Oil and Grease',
+    '١- نقوم بوزن بوتقة جافة وفارغة (1w).
+     ٢- نأخذ 250 ml من العينة ثم نضيف 25 ml من hexane بالإضافة إلى 2 ml من حمض (HCl N6).
+     ٣- نغلق قمع الفصل ثم نرج جيدا.
+     ٤- نضع قمع الفصل على حامل (stand) حتى تظهر طبقتان منفصلتان.
+     ٥- نفتح الصنبور لتخرج الطبقة الأولى ثم نضع قمع به ورقة ترشيح تحتوي على 10 جم من كبريتات الصوديوم (sod.sulfate) في البوتقة الموزونة.
+     ٦- ثم توضع في فرن التجفيف عند درجة حرارة ٧٠ درجة مئوية.
+     ٧- بعد تبخر hexane نضع البوتقة في مكثف (desicator) لمدة ساعتين.
+     ٨- ثم نقوم بالوزن (2w).
+     
+     Oil and Grease (mg/L) = (w2 - w1) * 10 / vml sample',
+    120, 70);
+
+--- equipment
+
+INSERT INTO equipment (Name_, Manufacture, Type_)
+VALUES
+    ('زجاجات', 'LabGlass Inc.', 'Container'),
+    ('جهاز BOD', 'EnviroTech', 'Measurement Device'),
+    ('أقراص معدنية', 'ChemEquip', 'Accessory'),
+    ('أقراص هيدروكسيد الصوديوم', 'ChemEquip', 'Chemical'),
+    ('مؤشر زئبقي', 'Precision Instruments', 'Measurement Device'),
+    ('مانوميتر', 'PressureTech', 'Measurement Device'),
+    ('جهاز لضبط الحرارة', 'TempControl Co.', 'Control Device'),
+    ('ماصة', 'LabTools', 'Measurement Tool'),
+    ('كأس زجاجي', 'LabGlass Inc.', 'Container'),
+    ('ورقة ترشيح', 'FilterWorks', 'Accessory'),
+    ('محلول يود', 'ChemSupply', 'Chemical'),
+    ('حمض هيدروكلوريك', 'ChemSupply', 'Chemical'),
+    ('محلول صوديوم ثيوسلفات', 'ChemSupply', 'Chemical'),
+    ('كاشف النشا', 'ChemReagents', 'Chemical'),
+    ('بوتقة', 'LabGlass Inc.', 'Container'),
+    ('مقياس الوزن', 'BalanceTech', 'Measurement Device'),
+    ('قمع الفصل', 'SepaTools', 'Accessory'),
+    ('حامل', 'LabStand', 'Accessory'),
+    ('كبريتات الصوديوم', 'ChemReagents', 'Chemical'),
+    ('فرن تجفيف', 'HeatWorks', 'Control Device'),
+    ('مكثف', 'LabTools', 'Accessory'),
+    ('هكسان', 'ChemReagents', 'Chemical');
+
+-- test_have_equipment
+INSERT INTO test_have_equipment VALUES
+(5, 5),
+(5, 6),
+(5, 7),
+(5, 8),
+(5, 9),
+(5, 10),
+(5, 11),
+(6, 12),
+(6, 13),
+(6, 14),
+(6, 15),
+(6, 16),
+(6, 17),
+(6, 18),
+(7, 19),
+(7, 20),
+(7, 21),
+(7, 22),
+(7, 23),
+(7, 24),
+(7, 25),
+(7, 26);
+
