@@ -3,7 +3,7 @@ const connection = require(path.join(path.resolve(), 'config/db.js'));
 
 const makeExperiment = (req, res) => {
     const { Inf, Eff, Blank } = req.body;
-    const TestID = res.params;
+    const { TestID } = req.params;
     if (!Inf || !Eff || !Blank || !TestID) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
