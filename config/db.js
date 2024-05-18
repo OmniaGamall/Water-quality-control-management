@@ -5,7 +5,7 @@ const config = {
     user: "root",
     password: "",
     database: "water_analysis_system",
-    port: 3307,
+    port: 3306,
 }
  
 const connection = mysql.createConnection(config)
