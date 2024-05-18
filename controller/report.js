@@ -16,20 +16,44 @@ let addReport = async (req, res) => {
         res.status(200).json({ message: "Success", insertId: result.insertId });
     });
 }
-let getReportByID = async(req, res) =>{
-    const reportID = req.params.RepID;
-    connection.execute(`select * from report where RepID = ?`, [reportID], (err, data) =>{
-        if (err) {
-            console.error('Database error:', err);
-            return res.status(500).json({ message: 'Error fetching report', error: err });
-        }
-        if (data && data.length > 0) {
-            res.status(200).json({ message : "Success", data: data[0] });
-        } else {
-            res.status(404).json({ message : "Report not found" });
-        }
+
+//** always id == 1 meaning we have one report edit in it every day (we will edit this feature soon)
+const getReportByID = (req, res) => { 
+    const { id } = req.params;
+    if (!id) {
+      return res.status(400).json({ error: 'ID is required' });
+    }
+    const query = `
+      SELECT 
+        e.Fname as Chemist_Fname,
+        e.Lname as Chemist_Lname,
+        r.Efficiency,
+        r.Flow,
+        r.RCI2 as R_Cl2,
+        r.TotalDuration,
+        r.Date_,
+        r.Day_,
+        r.Temp
+      FROM 
+        report r
+      LEFT JOIN 
+        chemist c ON r.ChID = c.ChID
+      LEFT JOIN 
+        employee e ON c.ChID = e.EmpID
+      WHERE 
+        r.RepID = ?`;
+        
+    connection.query(query, [id], (err, result) => {
+      if (err) {
+        console.error('Error fetching report:', err);
+        return res.status(500).send('Internal Server Error');
+      }
+      if (result.length === 0) {
+        return res.status(404).json({ error: 'Report not found' });
+      }
+      res.status(200).json(result[0]);
     });
-}
+};
 
 let getAllReports = async(req, res) =>{
     connection.execute(`select *  from report`, (err, data) =>{
