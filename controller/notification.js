@@ -2,13 +2,23 @@ const path = require('path');
 const connection = require(path.join(path.resolve(), 'config/db.js'));
 
 const getNotifications = (req, res) => {
-    connection.query('SELECT * FROM notification', (err, result) => {
-        if (err) {
-        console.error('Error fetching notifications:', err);
-        return res.status(500).send('Internal Server Error');
-        }
-        res.status(200).json(result);
-    });
+  const query = 
+  `SELECT n.MessageContent, CONCAT(e.Fname, ' ', e.Lname) AS "Sender Name" 
+   FROM notification n 
+   INNER JOIN employee e ON n.Sender = e.EmpID `;
+
+  connection.execute(query, (err, result) => {
+      if (err) {
+          console.error('Database error:', err);
+          return res.status(500).json({ message: 'Failed to retrieve notification', error: err });
+      }
+
+      if (result.length === 0) {
+          return res.status(404).json({ message: 'Notification not found' });
+      }
+      
+      res.status(200).json({ result});
+  });
 };
 
   const getNotification = (req, res) => {
