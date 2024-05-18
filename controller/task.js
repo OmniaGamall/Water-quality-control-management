@@ -2,11 +2,12 @@ const path = require('path');
 const connection = require(path.join(path.resolve(), 'config/db.js'));
 
 let addTask = async (req, res) => {  
-    const { ChID, Description_, Status_, AssignedTo } = req.body;
+    const ID = req.params.EmpID;
+    const {Description_, Status_ } = req.body;
 
     connection.execute(
-        `INSERT INTO task (Description_, Status_, AssignedTo) VALUES (?, ?, ?)`,
-        [Description_, Status_, AssignedTo],
+        `INSERT INTO task (Description_, Status_) VALUES (?, ?)`,
+        [Description_, Status_],
         (err, taskResult) => {
             if (err) {
                 console.error('Database error:', err);
@@ -16,8 +17,8 @@ let addTask = async (req, res) => {
             const taskId = taskResult.insertId;
 
             connection.execute(
-                `INSERT INTO create_task (ChID, TaskID) VALUES (?, ?)`,
-                [ChID, taskId],
+                `INSERT INTO create_task (EmpID, TaskID) VALUES (?, ?)`,
+                [ID, taskId],
                 (err, createTaskResult) => {
                     if (err) {
                         console.error('Database error:', err);
@@ -57,18 +58,30 @@ let getAllTasks = async(req, res) =>{
 }
 
 let deleteTaskByID = async (req, res) => {
+    const ID = req.params.EmpID;
     const taskId = req.params.TaskID;
 
-    connection.execute(`DELETE FROM task WHERE TaskID = ?`, [taskId], (err, result) => {
+    connection.execute(`SELECT * FROM create_task WHERE EmpID = ? AND TaskID = ?`, [ID, taskId], (err, data) => {
         if (err) {
             console.error('Database error:', err);
-            return res.status(500).json({ message: 'Failed to delete task', error: err });
+            return res.status(500).json({ message: 'Failed to verify task creator', error: err });
         }
 
-        if (result.affectedRows > 0) {
-            res.status(200).json({ message: 'Task deleted successfully' });
+        if (data.length > 0) {
+            connection.execute(`DELETE FROM task WHERE TaskID = ?`, [taskId], (err, result) => {
+                if (err) {
+                    console.error('Database error:', err);
+                    return res.status(500).json({ message: 'Failed to delete task', error: err });
+                }
+
+                if (result.affectedRows > 0) {
+                    res.status(200).json({ message: 'Task deleted successfully' });
+                } else {
+                    res.status(404).json({ message: 'Task not found' });
+                }
+            });
         } else {
-            res.status(404).json({ message: 'Task not found' });
+            res.status(403).json({ message: 'You are not authorized to delete this task' });
         }
     });
 };
