@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node config/app.js",
-    "devstart":  "nodemon config/app.js"
+    "devStart":  "nodemon config/app.js"
   },
   "repository": {
     "type": "git",
