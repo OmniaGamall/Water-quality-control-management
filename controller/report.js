@@ -125,6 +125,5 @@ module.exports = {
     getAllReports,
     deleteReportByID,
     getExperimentsForToday,
-    updateReport,
     addNote
 }
