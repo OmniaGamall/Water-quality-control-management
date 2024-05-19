@@ -261,7 +261,7 @@ ALTER TABLE experiment ADD Eff INT;
 ALTER TABLE experiment ADD Blank INT;
 ALTER TABLE experiment ADD TestID INT;
 ALTER TABLE experiment ADD FOREIGN KEY (TestID) REFERENCES test (TestID);
-
+ALTER TABLE experiment ADD COLUMN `date` DATE DEFAULT CURRENT_DATE; -- new
 ``` Delete and Drop some tables make conflicts ```
 DROP Table experiment_from_test;
 DROP TABLE experiment_have_equipment;
