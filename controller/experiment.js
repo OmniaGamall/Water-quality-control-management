@@ -25,6 +25,7 @@ let getAllExperiments = async(req, res) =>{
     })
 }
 
+
 const getExperimentsForToday = (req, res, reportData) => {
     const date = req.body.date
     if (!date) {
@@ -34,9 +35,9 @@ const getExperimentsForToday = (req, res, reportData) => {
         SELECT 
             e.Inf,
             e.Eff,
-            e.Blank As 'Limit',
-            t.TestName As 'Test Name',
-            t.Duration As 'Test Duration'
+            t.TestName AS 'Test Name',
+            t.Duration AS 'Test Duration',
+            t.Temp AS 'Test Temp'
         FROM 
             experiment e
         JOIN 
@@ -52,13 +53,49 @@ const getExperimentsForToday = (req, res, reportData) => {
         if (experimentResults.length === 0) {
             return res.status(404).json({ error: 'Experiments not found' });
         }
-        const responseData = {
-            report: reportData,
-            experiments: experimentResults
-        };
-        res.status(200).json(responseData);
+        const numberOfExperiments = experimentResults.length;
+        let totalEfficiency = 0;
+        let totalDuration = 0;
+        let maxTemp = -Infinity;
+        
+        experimentResults.forEach(exp => {
+            totalEfficiency += (exp.Inf / exp.Eff) * 100;
+            totalDuration += exp['Test Duration'];
+            if (exp['Test Temp'] > maxTemp) {
+                maxTemp = exp['Test Temp'];
+            }
+        });
+
+        const efficiency = totalEfficiency / numberOfExperiments;
+        
+         // Update the report table with the new values
+        const updateQuery = `
+            UPDATE report
+            SET Efficiency = ?, TotalDuration = ?, Temp = ?
+            WHERE RepID = 1;
+        `;
+        connection.query(updateQuery, [efficiency, totalDuration, maxTemp], (updateErr) => {
+            if (updateErr) {
+                console.error('Error updating report:', updateErr);
+                return res.status(500).send('Internal Server Error');
+            }
+
+            // Update reportData with overridden values
+            reportData.Efficiency = efficiency;
+            reportData.TotalDuration = totalDuration;
+            reportData.Temp = maxTemp;
+
+            const responseData = {
+                report: reportData,
+                experiments: experimentResults
+            };
+
+            res.status(200).json(responseData);
+        });
     });
-  };
+};
+
+
 let deleteExperimentByID = async (req, res) => {
     const ExpID = req.params.ExpID;
 

@@ -18,7 +18,7 @@ let addReport = async (req, res) => {
     });
 }
 
-let experimentController = require(path.join(path.resolve(), "controller/experiment.js"))
+const expController = require(path.join(path.resolve(), "controller/experiment.js"))
 //** always id == 1 meaning we have one report edit in it every day (we will edit this feature soon)
 const getReportByID = (req, res) => { 
     const { id } = req.params;
@@ -60,7 +60,7 @@ const getReportByID = (req, res) => {
 };
 
 const getExperimentsForToday = (req, res, reportData) => {
-    experimentController.getExperimentsForToday(req, res, reportData);
+    expController.getExperimentsForToday(req, res, reportData);
 };
 
 let getAllReports = async(req, res) =>{
@@ -87,41 +87,12 @@ let deleteReportByID = async (req, res) => {
         }
     });
 };
-let updateReport = async (req, res) => {
-    const { RepID, ...updateFields } = req.body;
-
-    if (!RepID) {
-        return res.status(400).json({ message: 'ID is required for updating the report' });
-    }
-
-    const allowedFields = ['Title', 'Author', 'Flow', 'Temp', 'TotalDuration', 'Date_', 'Day_'];
-    const fields = Object.keys(updateFields).filter(field => allowedFields.includes(field));
-    const values = fields.map(field => updateFields[field]);
-
-    if (fields.length === 0) {
-        return res.status(400).json({ message: 'No valid fields to update' });
-    }
-
-    const setClause = fields.map(field => `${field} = ?`).join(', ');
-
-    const query = `UPDATE report SET ${setClause} WHERE RepID = ?`;
-    values.push(RepID); 
-
-    connection.execute(query, values, (err, result) => {
-        if (err) {
-            console.error('Database error:', err);
-            return res.status(500).json({ message: 'Failed to update report', err });
-        }
-
-        res.status(200).json({ message: 'Success', affectedRows: result.affectedRows });
-    });
-}
+  
 
 module.exports = {
     addReport,
     getReportByID,
     getAllReports,
     deleteReportByID,
-    updateReport, 
     getExperimentsForToday
 }

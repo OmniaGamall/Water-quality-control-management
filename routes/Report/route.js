@@ -7,6 +7,6 @@ app.post("/addReport", reportController.addReport)
 app.get("/getReport/:id", reportController.getReportByID)
 app.get("/getAllReports", reportController.getAllReports)
 app.delete("/deleteReportByID/:RepID", reportController.deleteReportByID)
-app.put("/updateReport", reportController.updateReport)
+
 
 module.exports = app
