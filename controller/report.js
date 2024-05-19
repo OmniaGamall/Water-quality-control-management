@@ -89,10 +89,42 @@ let deleteReportByID = async (req, res) => {
 };
   
 
+let addNote = (req, res) => {
+    const { content } = req.body;
+    const { repID, EmpID } = req.params;
+
+    if (!content || !repID || !EmpID) {
+        return res.status(400).json({ message: 'content, repID, and EmpID are required fields' });
+    }
+
+    const notificationQuery = 'INSERT INTO notification (MessageContent, Sender) VALUES (?, ?)';
+    connection.execute(notificationQuery, [content, EmpID], (err, notificationResult) => {
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).json({ message: 'Failed to add notification', error: err });
+        }
+
+        const notificationID = notificationResult.insertId;
+
+        const addNoteQuery = 'INSERT INTO addNote (NotifiID, RepID) VALUES (?, ?)';
+        connection.execute(addNoteQuery, [notificationID, repID], (err, addNoteResult) => {
+            if (err) {
+                console.error('Database error:', err);
+                return res.status(500).json({ message: 'Failed to add note', error: err });
+            }
+
+            res.status(200).json({ message: 'Note added successfully' });
+        });
+    });
+};
+
+
 module.exports = {
     addReport,
     getReportByID,
     getAllReports,
     deleteReportByID,
-    getExperimentsForToday
+    getExperimentsForToday,
+    updateReport,
+    addNote
 }

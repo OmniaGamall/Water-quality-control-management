@@ -326,3 +326,37 @@ INSERT INTO test_have_equipment VALUES
 (7, 25),
 (7, 26);
 
+
+________________
+--- Total coliform
+
+INSERT INTO Test (TestName, Instructions, Duration, Temp)
+VALUES (
+    'Total coliform',
+    '1- عمل تخفيف تسلسلي بتراكيز (0.1, 0.01, 0.001)
+    2- استخدام لورييل تربتوز (lauryl treptose) نضع منه 9 ML)) ف كل انبوبة بمعدل 3 صفوف كل صف 5 أنابيب وقم برج الأنابيب بحذر لتقليل الفقاعات الهوائية
+    3- ضع ف كل انبوبة 1ml من العينة المخففة
+    4- احفظ الأنابيب ف درجة حرارة 35±0.5
+    5- بعد 24 ساعة لاحظ إذا كان هناك فقاعات غازية أو نمو ان لم يكن هناك أي مظهر من مظاهر العينة تحفظ لمدة 24 ساعة أخرى
+    6- في غياب وجود نمو أو فقاعات غازية بعد 48 ساعة تكون النتيجة سلبية. إذا ظهر نمو نقوم بعمل تجربة تأكيدية نقوم باستخدام برنت جيرن لاكتوز
+    7- نقوم باستخدام ابرة معقمة لنقل 3 مرات من الأنابيب التي تكون فيها نمو ونقوم بحفظها ف درجة حرارة 35±0.5
+    8- نحسب قيمة MPN من عدد الأنابيب البرلنت جيرن التي حدث بها نمو
+',
+    2880,  35);
+
+
+INSERT INTO equipment (Name_, Manufacture, Type_) VALUES
+('أنابيب تجربة', 'Various', 'Laboratory glassware'),
+('Lauryl treptose', 'Various', 'Chemical reagent'),
+('إبرة معقمة', 'Various', 'Laboratory consumable'),
+('Brilliant Green Lactose Bile Broth', 'Various', 'Microbiology media'),
+('Timer', 'Various', 'Laboratory instrument'),
+('Thermometer', 'Various', 'Laboratory instrument');
+
+INSERT INTO test_have_equipment VALUES
+(11, 28),
+(11, 29),
+(11, 30),
+(11, 31),
+(11, 32),
+(11, 33);
