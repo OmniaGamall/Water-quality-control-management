@@ -67,19 +67,20 @@ const fetchExperimentData = (date, res, reportData) => {
 
 const ExperimentResults = (experimentResults, res, reportData) => {
     const numberOfExperiments = experimentResults.length;
-    let totalEfficiency = 0;
+    let totalInf = 0, totalEff = 0;
     let totalDuration = 0;
     let maxTemp = -Infinity;
 
     experimentResults.forEach(exp => {
-        totalEfficiency += (exp.Inf / exp.Eff) * 100;
+        totalInf += (exp.Inf);
+        totalEff += (exp.Eff);
         totalDuration += exp['Test Duration'];
         if (exp['Test Temp'] > maxTemp) {
             maxTemp = exp['Test Temp'];
         }
     });
-
-    const efficiency = totalEfficiency / numberOfExperiments;
+  
+    const efficiency = (totalInf/ totalEff) * 100;
 
     updateReportTable(efficiency, totalDuration, maxTemp, res, reportData, experimentResults);
 };

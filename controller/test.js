@@ -32,7 +32,7 @@ const getTests = (req, res) => {
 
 
 
-  const addTest = (req, res) => {
+  const addTest = (req, res) => { /// -> edit to addEquipment
     const { TestName } = req.body
     const { Instructions } = req.body
     const { Duration } = req.body

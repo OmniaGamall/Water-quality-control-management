@@ -59,7 +59,7 @@ const getNotifications = (req, res) => {
     if (!id) {
       return res.status(400).json({ error: 'Notification ID is required' });
     }
-    connection.query('DELETE FROM notification WHERE NotifiID = ?', [id], (err) => {
+    connection.query('DELETE FROM notification WHERE NotifiID = ?', [id], (err, result) => {
       if (err) {
         console.error('Error deleting notification:', err);
         return res.status(500).send('Internal Server Error');
