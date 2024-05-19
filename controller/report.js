@@ -119,11 +119,50 @@ let addNote = (req, res) => {
 };
 
 
+const updateReport = (req, res) => {
+    const { id, EmpID} = req.params;
+    const { flow, R_cl2 } = req.body;
+    
+    const checkRoleQuery = 'SELECT RoleID FROM employee WHERE EmpID = ?';
+    
+    if (flow === undefined || R_cl2 === undefined) {
+        return res.status(400).json({ error: 'Flow and R_cl2 are required' });
+    }
+    connection.execute(checkRoleQuery, [EmpID], (err, roleData) => {
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).json({ message: 'Failed to verify employee role', error: err });
+        }
+
+        if (roleData.length > 0 && roleData[0].RoleID !== 4) {
+            // EmpID is not authorized
+            return res.status(403).json({ message: 'Only chemists can perform this update' });
+        }
+        connection.query(
+            'UPDATE report SET Flow = ?, RCI2 = ? WHERE RepID = ?',
+            [flow, R_cl2, id],
+            (err, result) => {
+                if (err) {
+                    console.error('Error updating report:', err);
+                    return res.status(500).send('Internal Server Error');
+                }
+                if (result.affectedRows === 0) {
+                    return res.status(404).json({ error: 'Report not found' });
+                }
+    
+                res.status(200).json({ message: 'Report updated successfully' });
+            }
+        );
+    })
+};
+
+
 module.exports = {
     addReport,
     getReportByID,
     getAllReports,
     deleteReportByID,
     getExperimentsForToday,
-    addNote
+    addNote,
+    updateReport
 }
