@@ -34,13 +34,13 @@ const getTests = (req, res) => {
 
   const addTest = (req, res) => {
     const { TestName } = req.body
-    const { Description } = req.body
-    const { ApplicableParameters } = req.body
-    const { Cost } = req.body
-    if (!TestName || !Description || !ApplicableParameters || !Cost) {
-      return res.status(400).json({ error: 'TestName, Description, ApplicableParameters and Cost are required' });
+    const { Instructions } = req.body
+    const { Duration } = req.body
+    const { Temp } = req.body
+    if (!TestName || !Instructions || !Duration || !Temp) {
+      return res.status(400).json({ error: 'Missing Required Fields' });
     }
-    connection.query('INSERT INTO test(Cost, TestName, Description_, ApplicableParameters)  VALUES (?, ?, ?, ?)', [Cost, TestName, Description, ApplicableParameters], (err, result) => {
+    connection.query('INSERT INTO test(Temp, TestName, Instructions, Duration)  VALUES (?, ?, ?, ?)', [Temp, TestName, Instructions, Duration], (err, result) => {
       if (err) {
         console.error('Error adding test:', err);
         return res.status(500).send('Internal Server Error');

@@ -16,7 +16,6 @@ const makeExperiment = (req, res) => {
     });
 };
 
-///// ------------------------------------------------------------------------ /////
 let getAllExperiments = async(req, res) =>{
     connection.execute(`select *  from experiment`, (err, data) =>{
         if(data)
@@ -26,6 +25,7 @@ let getAllExperiments = async(req, res) =>{
     })
 }
 
+///// ------------------------------------------------------------------------ /////
 const getExperimentsForToday = (req, res, reportData) => {
     const date = req.body.date;
 
