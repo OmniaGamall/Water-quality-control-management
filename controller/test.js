@@ -12,14 +12,6 @@ const getTests = (req, res) => {
   };
 
 
-  const addTest = (req, res) => { /// -> edit to addEquipment
-    const { TestName } = req.body
-    const { Instructions } = req.body
-    const { Duration } = req.body
-    const { Temp } = req.body
-    if (!TestName || !Instructions || !Duration || !Temp) {
-      return res.status(400).json({ error: 'Missing Required Fields' });
-
 ///// ------------------ ------------------ ------------------ ------------------ /////
 const addTest = (req, res) => {
   const { TestName, Instructions, Duration, Temp, Equipment } = req.body;
