@@ -23,5 +23,5 @@ This project aims to revolutionize the water analysis process at drinking water 
 ### - ERD 
 ![ERD](https://github.com/OmniaGamall/Water-quality-control-management/blob/main/database-diagrams/ERD.png)
 ### - Schema
-![Schema](https://github.com/OmniaGamall/Water-quality-control-management/blob/main/database-diagrams/Schema.png)
+![Schema](https://github.com/OmniaGamall/Water-quality-control-management/blob/main/database-diagrams/updated-schema.png)
 

@@ -11,6 +11,7 @@ const getTests = (req, res) => {
     });
   };
 
+
   const addTest = (req, res) => { /// -> edit to addEquipment
     const { TestName } = req.body
     const { Instructions } = req.body
@@ -18,16 +19,108 @@ const getTests = (req, res) => {
     const { Temp } = req.body
     if (!TestName || !Instructions || !Duration || !Temp) {
       return res.status(400).json({ error: 'Missing Required Fields' });
+
+///// ------------------ ------------------ ------------------ ------------------ /////
+const addTest = (req, res) => {
+  const { TestName, Instructions, Duration, Temp, Equipment } = req.body;
+  if (!TestName || !Instructions || !Duration || !Temp || !Array.isArray(Equipment)) {
+    return res.status(400).json({ error: 'Missing Required Fields or Equipment is not an array' });
+  }
+
+  connection.beginTransaction(err => {
+    if (err) {
+      console.error('Error starting transaction:', err);
+      return res.status(500).send('Internal Server Error');
     }
-    connection.query('INSERT INTO test(Temp, TestName, Instructions, Duration)  VALUES (?, ?, ?, ?)', [Temp, TestName, Instructions, Duration], (err, result) => {
+
+    // Step 1: Insert the new test record
+    connection.query('INSERT INTO test (TestName, Instructions, Duration, Temp) VALUES (?, ?, ?, ?)', [TestName, Instructions, Duration, Temp], (err, result) => {
       if (err) {
         console.error('Error adding test:', err);
-        return res.status(500).send('Internal Server Error');
+        return connection.rollback(() => {
+          res.status(500).send('Internal Server Error');
+        });
       }
-      console.log(result.insertId);
-      res.status(201).json({ message: 'Test added successfully' });
+      const testId = result.insertId;
+
+      // Step 2: Check for existing equipment and insert new ones if necessary
+      const equipmentNames = Equipment.map(e => e.Name_);
+      const placeholders = equipmentNames.map(() => '?').join(',');
+      connection.query(`SELECT EquID, Name_ FROM equipment WHERE Name_ IN (${placeholders})`, equipmentNames, (err, existingEquipment) => {
+        if (err) {
+          console.error('Error checking equipment:', err);
+          return connection.rollback(() => {
+            res.status(500).send('Internal Server Error');
+          });
+        }
+
+        const existingEquipmentMap = new Map(existingEquipment.map(eq => [eq.Name_, eq.EquID]));
+        const newEquipment = Equipment.filter(e => !existingEquipmentMap.has(e.Name_));
+
+        if (newEquipment.length > 0) {
+          const newEquipmentValues = newEquipment.map(e => [e.Name_, e.Manufacture, e.Type_]);
+          connection.query('INSERT INTO equipment (Name_, Manufacture, Type_) VALUES ?', [newEquipmentValues], (err, insertResult) => {
+            if (err) {
+              console.error('Error adding new equipment:', err);
+              return connection.rollback(() => {
+                res.status(500).send('Internal Server Error');
+              });
+            }
+
+            // Map new equipment names to their IDs
+            newEquipment.forEach((e, index) => {
+              existingEquipmentMap.set(e.Name_, insertResult.insertId + index);
+            });
+
+            // Step 3: Insert relationships into test_have_equipment table
+            const testEquipmentValues = equipmentNames.map(name => [testId, existingEquipmentMap.get(name)]);
+            connection.query('INSERT INTO test_have_equipment (TestID, EquID) VALUES ?', [testEquipmentValues], (err) => {
+              if (err) {
+                console.error('Error adding test-equipment relationships:', err);
+                return connection.rollback(() => {
+                  res.status(500).send('Internal Server Error');
+                });
+              }
+
+              connection.commit(err => {
+                if (err) {
+                  console.error('Error committing transaction:', err);
+                  return connection.rollback(() => {
+                    res.status(500).send('Internal Server Error');
+                  });
+                }
+                res.status(201).json({ message: 'Test and equipment added successfully' });
+              });
+            });
+          });
+        } else {
+          // No new equipment, directly insert relationships
+          const testEquipmentValues = equipmentNames.map(name => [testId, existingEquipmentMap.get(name)]);
+          connection.query('INSERT INTO test_have_equipment (TestID, EquID) VALUES ?', [testEquipmentValues], (err) => {
+            if (err) {
+              console.error('Error adding test-equipment relationships:', err);
+              return connection.rollback(() => {
+                res.status(500).send('Internal Server Error');
+              });
+            }
+
+            connection.commit(err => {
+              if (err) {
+                console.error('Error committing transaction:', err);
+                return connection.rollback(() => {
+                  res.status(500).send('Internal Server Error');
+                });
+              }
+              res.status(201).json({ message: 'Test and equipment added successfully' });
+            });
+          });
+        }
+      });
     });
-  };
+  });
+};
+///// ------------------ ------------------ ------------------ ------------------ /////
+
 
   const deleteTest = (req, res) => {
     const { id } = req.params
