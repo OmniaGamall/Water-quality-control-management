@@ -346,17 +346,16 @@ VALUES (
 
 
 INSERT INTO equipment (Name_, Manufacture, Type_) VALUES
-('أنابيب تجربة', 'Various', 'Laboratory glassware'),
 ('Lauryl treptose', 'Various', 'Chemical reagent'),
 ('إبرة معقمة', 'Various', 'Laboratory consumable'),
 ('Brilliant Green Lactose Bile Broth', 'Various', 'Microbiology media'),
-('Timer', 'Various', 'Laboratory instrument'),
-('Thermometer', 'Various', 'Laboratory instrument');
+('Timer', 'Various', 'Laboratory instrument');
 
 INSERT INTO test_have_equipment VALUES
-(11, 28),
+(11, 6),
+(11, 12),
+(11, 14),
 (11, 29),
 (11, 30),
 (11, 31),
-(11, 32),
-(11, 33);
+(11, 32);
