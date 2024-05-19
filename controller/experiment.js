@@ -16,6 +16,7 @@ const makeExperiment = (req, res) => {
     });
 };
 
+///// ------------------------------------------------------------------------ /////
 let getAllExperiments = async(req, res) =>{
     connection.execute(`select *  from experiment`, (err, data) =>{
         if(data)
@@ -25,12 +26,17 @@ let getAllExperiments = async(req, res) =>{
     })
 }
 
-
 const getExperimentsForToday = (req, res, reportData) => {
-    const date = req.body.date
+    const date = req.body.date;
+
     if (!date) {
-      return res.status(400).json({ error: 'Date is required' });
+        return res.status(400).json({ error: 'Date is required' });
     }
+
+    fetchExperimentData(date, res, reportData);
+};
+
+const fetchExperimentData = (date, res, reportData) => {
     const query = `
         SELECT 
             e.Inf,
@@ -45,6 +51,7 @@ const getExperimentsForToday = (req, res, reportData) => {
         WHERE 
             e.date = ?;
     `;
+
     connection.query(query, [date], (err, experimentResults) => {
         if (err) {
             console.error('Error fetching experiment data:', err);
@@ -53,47 +60,59 @@ const getExperimentsForToday = (req, res, reportData) => {
         if (experimentResults.length === 0) {
             return res.status(404).json({ error: 'Experiments not found' });
         }
-        const numberOfExperiments = experimentResults.length;
-        let totalEfficiency = 0;
-        let totalDuration = 0;
-        let maxTemp = -Infinity;
-        
-        experimentResults.forEach(exp => {
-            totalEfficiency += (exp.Inf / exp.Eff) * 100;
-            totalDuration += exp['Test Duration'];
-            if (exp['Test Temp'] > maxTemp) {
-                maxTemp = exp['Test Temp'];
-            }
-        });
 
-        const efficiency = totalEfficiency / numberOfExperiments;
-        
-         // Update the report table with the new values
-        const updateQuery = `
-            UPDATE report
-            SET Efficiency = ?, TotalDuration = ?, Temp = ?
-            WHERE RepID = 1;
-        `;
-        connection.query(updateQuery, [efficiency, totalDuration, maxTemp], (updateErr) => {
-            if (updateErr) {
-                console.error('Error updating report:', updateErr);
-                return res.status(500).send('Internal Server Error');
-            }
-
-            // Update reportData with overridden values
-            reportData.Efficiency = efficiency;
-            reportData.TotalDuration = totalDuration;
-            reportData.Temp = maxTemp;
-
-            const responseData = {
-                report: reportData,
-                experiments: experimentResults
-            };
-
-            res.status(200).json(responseData);
-        });
+        ExperimentResults(experimentResults, res, reportData);
     });
 };
+
+const ExperimentResults = (experimentResults, res, reportData) => {
+    const numberOfExperiments = experimentResults.length;
+    let totalEfficiency = 0;
+    let totalDuration = 0;
+    let maxTemp = -Infinity;
+
+    experimentResults.forEach(exp => {
+        totalEfficiency += (exp.Inf / exp.Eff) * 100;
+        totalDuration += exp['Test Duration'];
+        if (exp['Test Temp'] > maxTemp) {
+            maxTemp = exp['Test Temp'];
+        }
+    });
+
+    const efficiency = totalEfficiency / numberOfExperiments;
+
+    updateReportTable(efficiency, totalDuration, maxTemp, res, reportData, experimentResults);
+};
+
+const updateReportTable = (efficiency, totalDuration, maxTemp, res, reportData, experimentResults) => {
+    const updateQuery = `
+        UPDATE report
+        SET Efficiency = ?, TotalDuration = ?, Temp = ?
+        WHERE RepID = 1;
+    `;
+    connection.query(updateQuery, [efficiency, totalDuration, maxTemp], (updateErr) => {
+        if (updateErr) {
+            console.error('Error updating report:', updateErr);
+            return res.status(500).send('Internal Server Error');
+        }
+
+        updateReportData(efficiency, totalDuration, maxTemp, reportData, experimentResults, res);
+    });
+};
+
+const updateReportData = (efficiency, totalDuration, maxTemp, reportData, experimentResults, res) => {
+    reportData.Efficiency = efficiency;
+    reportData.TotalDuration = totalDuration;
+    reportData.Temp = maxTemp;
+
+    const responseData = {
+        report: reportData,
+        experiments: experimentResults
+    };
+
+    res.status(200).json(responseData);
+};
+///// ------------------------------------------------------------------------ /////
 
 
 let deleteExperimentByID = async (req, res) => {
