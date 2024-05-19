@@ -66,7 +66,6 @@ const fetchExperimentData = (date, res, reportData) => {
 };
 
 const ExperimentResults = (experimentResults, res, reportData) => {
-    const numberOfExperiments = experimentResults.length;
     let totalInf = 0, totalEff = 0;
     let totalDuration = 0;
     let maxTemp = -Infinity;
