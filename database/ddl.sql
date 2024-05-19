@@ -298,9 +298,10 @@ ALTER TABLE report ADD ChID INT;
 ALTER TABLE report ADD FOREIGN KEY (ChID) REFERENCES chemist (ChID);
 ALTER TABLE report ADD Efficiency INT;
 ALTER TABLE report ADD RCI2 INT;
-DELETE FROM view_report;
 DELETE FROM report;
-
+DROP TABLE view_report;
+DROP TABLE show_notification;
+DROP TABLE it_control_exp;
 --- experiment and report relation
 DROP TABLE experiment_savesas_report;
 CREATE TABLE experiment_savesas_report (
@@ -314,7 +315,6 @@ CREATE TABLE experiment_savesas_report (
 
 --- edit task table
 DROP TABLE modify_task;
-
 ALTER TABLE task DROP FOREIGN KEY task_ibfk_1;
 ALTER TABLE task DROP COLUMN AssignedTo;
 
@@ -363,3 +363,12 @@ CREATE TABLE add_Note (
 --- edit on task table
 ALTER TABLE task
 ADD COLUMN name VARCHAR(50) NOT NULL;
+
+
+--- edit constraint of NotifiID
+ALTER TABLE add_Note DROP FOREIGN KEY add_note_ibfk_2;
+
+ALTER TABLE add_Note
+ADD CONSTRAINT add_note_ibfk_2
+FOREIGN KEY (NotifiID) REFERENCES notification (NotifiID)
+ON DELETE CASCADE;
