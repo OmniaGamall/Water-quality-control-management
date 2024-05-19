@@ -106,7 +106,7 @@ let addNote = (req, res) => {
 
         const notificationID = notificationResult.insertId;
 
-        const addNoteQuery = 'INSERT INTO addNote (NotifiID, RepID) VALUES (?, ?)';
+        const addNoteQuery = 'INSERT INTO add_Note (NotifiID, RepID) VALUES (?, ?)';
         connection.execute(addNoteQuery, [notificationID, repID], (err, addNoteResult) => {
             if (err) {
                 console.error('Database error:', err);
