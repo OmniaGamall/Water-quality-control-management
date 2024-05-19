@@ -34,6 +34,6 @@ app.use(reportRoutes);
 app.use(equipmentRoutes);
 
 
-app.listen(2086, () => {
-  console.log('Server is running on port 2086');
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
 });

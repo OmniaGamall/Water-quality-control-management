@@ -115,13 +115,13 @@ let showNotificationByID = async (req, res) => {
         res.status(200).json({ notification });
     });
 };
-  module.exports = { 
+module.exports = { 
     getNotifications, 
     getNotification, 
     addNotification, 
     deleteNotification, 
     updateNotification,
     showNotificationByID
-  };
+};
   
   
